@@ -9,41 +9,41 @@
 #import "RVMyScene.h"
 
 @implementation RVMyScene
+SKSpriteNode *ball;
+SKSpriteNode *platform;
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.backgroundColor = [SKColor blackColor];
+
+//        self.physicsWorld.gravity = CGVectorMake(0, 0);
+        ball = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(20, 20)];
+        ball.position = CGPointMake(ball.size.width/2, self.size.height/2);
+        ball.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ball.size];
+        ball.physicsBody.velocity = CGVectorMake(10, 0);
+//        [ball.physicsBody applyImpulse:CGVectorMake(20, 0)];
+        ball.physicsBody.friction = 0;
+        platform = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake(size.width*1.2, size.height/2)];
+        platform.position = CGPointMake(platform.size.width/2, platform.size.height/2);
+        platform.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform.size];
+        platform.physicsBody.dynamic = NO;
+        platform.physicsBody.velocity = CGVectorMake(-60, 0);
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        [self addChild:ball];
+        [self addChild:platform];
         
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
     }
     return self;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
+//    ball.physicsBody.velocity = self.physicsBody.velocity;
+    [ball.physicsBody applyImpulse:CGVectorMake(0, 5)];
+    platform.physicsBody.velocity = self.physicsBody.velocity;
+    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
