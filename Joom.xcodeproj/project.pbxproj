@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F91760AF197A2AAD0031CF06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760AE197A2AAD0031CF06 /* Foundation.framework */; };
+		F91760B1197A2AAD0031CF06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760B0197A2AAD0031CF06 /* CoreGraphics.framework */; };
+		F91760B3197A2AAD0031CF06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760B2197A2AAD0031CF06 /* UIKit.framework */; };
+		F91760B5197A2AAD0031CF06 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760B4197A2AAD0031CF06 /* SpriteKit.framework */; };
+		F91760BB197A2AAD0031CF06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F91760B9197A2AAD0031CF06 /* InfoPlist.strings */; };
+		F91760BD197A2AAD0031CF06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760BC197A2AAD0031CF06 /* main.m */; };
+		F91760C1197A2AAD0031CF06 /* RVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */; };
+		F91760C4197A2AAD0031CF06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F91760C2197A2AAD0031CF06 /* Main.storyboard */; };
+		F91760C7197A2AAD0031CF06 /* RVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760C6197A2AAD0031CF06 /* RVViewController.m */; };
+		F91760CA197A2AAD0031CF06 /* RVMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760C9197A2AAD0031CF06 /* RVMyScene.m */; };
+		F91760CC197A2AAD0031CF06 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = F91760CB197A2AAD0031CF06 /* Spaceship.png */; };
+		F91760CE197A2AAD0031CF06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F91760CD197A2AAD0031CF06 /* Images.xcassets */; };
+		F91760D5197A2AAD0031CF06 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760D4197A2AAD0031CF06 /* XCTest.framework */; };
+		F91760D6197A2AAD0031CF06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760AE197A2AAD0031CF06 /* Foundation.framework */; };
+		F91760D7197A2AAD0031CF06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760B2197A2AAD0031CF06 /* UIKit.framework */; };
+		F91760DF197A2AAD0031CF06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F91760DD197A2AAD0031CF06 /* InfoPlist.strings */; };
+		F91760E1197A2AAD0031CF06 /* JoomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760E0197A2AAD0031CF06 /* JoomTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F91760D8197A2AAD0031CF06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F91760A3197A2AAD0031CF06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F91760AA197A2AAD0031CF06;
+			remoteInfo = Joom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F91760AB197A2AAD0031CF06 /* Joom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F91760AE197A2AAD0031CF06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F91760B0197A2AAD0031CF06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F91760B2197A2AAD0031CF06 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F91760B4197A2AAD0031CF06 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		F91760B8197A2AAD0031CF06 /* Joom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Joom-Info.plist"; sourceTree = "<group>"; };
+		F91760BA197A2AAD0031CF06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F91760BC197A2AAD0031CF06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F91760BE197A2AAD0031CF06 /* Joom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Joom-Prefix.pch"; sourceTree = "<group>"; };
+		F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RVAppDelegate.h; sourceTree = "<group>"; };
+		F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVAppDelegate.m; sourceTree = "<group>"; };
+		F91760C3197A2AAD0031CF06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F91760C5197A2AAD0031CF06 /* RVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RVViewController.h; sourceTree = "<group>"; };
+		F91760C6197A2AAD0031CF06 /* RVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVViewController.m; sourceTree = "<group>"; };
+		F91760C8197A2AAD0031CF06 /* RVMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RVMyScene.h; sourceTree = "<group>"; };
+		F91760C9197A2AAD0031CF06 /* RVMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVMyScene.m; sourceTree = "<group>"; };
+		F91760CB197A2AAD0031CF06 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		F91760CD197A2AAD0031CF06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F91760D3197A2AAD0031CF06 /* JoomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F91760D4197A2AAD0031CF06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F91760DC197A2AAD0031CF06 /* JoomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoomTests-Info.plist"; sourceTree = "<group>"; };
+		F91760DE197A2AAD0031CF06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F91760E0197A2AAD0031CF06 /* JoomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoomTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F91760A8197A2AAD0031CF06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91760B1197A2AAD0031CF06 /* CoreGraphics.framework in Frameworks */,
+				F91760B3197A2AAD0031CF06 /* UIKit.framework in Frameworks */,
+				F91760B5197A2AAD0031CF06 /* SpriteKit.framework in Frameworks */,
+				F91760AF197A2AAD0031CF06 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F91760D0197A2AAD0031CF06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91760D5197A2AAD0031CF06 /* XCTest.framework in Frameworks */,
+				F91760D7197A2AAD0031CF06 /* UIKit.framework in Frameworks */,
+				F91760D6197A2AAD0031CF06 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F91760A2197A2AAD0031CF06 = {
+			isa = PBXGroup;
+			children = (
+				F91760B6197A2AAD0031CF06 /* Joom */,
+				F91760DA197A2AAD0031CF06 /* JoomTests */,
+				F91760AD197A2AAD0031CF06 /* Frameworks */,
+				F91760AC197A2AAD0031CF06 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F91760AC197A2AAD0031CF06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F91760AB197A2AAD0031CF06 /* Joom.app */,
+				F91760D3197A2AAD0031CF06 /* JoomTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F91760AD197A2AAD0031CF06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F91760AE197A2AAD0031CF06 /* Foundation.framework */,
+				F91760B0197A2AAD0031CF06 /* CoreGraphics.framework */,
+				F91760B2197A2AAD0031CF06 /* UIKit.framework */,
+				F91760B4197A2AAD0031CF06 /* SpriteKit.framework */,
+				F91760D4197A2AAD0031CF06 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F91760B6197A2AAD0031CF06 /* Joom */ = {
+			isa = PBXGroup;
+			children = (
+				F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */,
+				F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */,
+				F91760C2197A2AAD0031CF06 /* Main.storyboard */,
+				F91760C5197A2AAD0031CF06 /* RVViewController.h */,
+				F91760C6197A2AAD0031CF06 /* RVViewController.m */,
+				F91760C8197A2AAD0031CF06 /* RVMyScene.h */,
+				F91760C9197A2AAD0031CF06 /* RVMyScene.m */,
+				F91760CB197A2AAD0031CF06 /* Spaceship.png */,
+				F91760CD197A2AAD0031CF06 /* Images.xcassets */,
+				F91760B7197A2AAD0031CF06 /* Supporting Files */,
+			);
+			path = Joom;
+			sourceTree = "<group>";
+		};
+		F91760B7197A2AAD0031CF06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F91760B8197A2AAD0031CF06 /* Joom-Info.plist */,
+				F91760B9197A2AAD0031CF06 /* InfoPlist.strings */,
+				F91760BC197A2AAD0031CF06 /* main.m */,
+				F91760BE197A2AAD0031CF06 /* Joom-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F91760DA197A2AAD0031CF06 /* JoomTests */ = {
+			isa = PBXGroup;
+			children = (
+				F91760E0197A2AAD0031CF06 /* JoomTests.m */,
+				F91760DB197A2AAD0031CF06 /* Supporting Files */,
+			);
+			path = JoomTests;
+			sourceTree = "<group>";
+		};
+		F91760DB197A2AAD0031CF06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F91760DC197A2AAD0031CF06 /* JoomTests-Info.plist */,
+				F91760DD197A2AAD0031CF06 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F91760AA197A2AAD0031CF06 /* Joom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F91760E4197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Joom" */;
+			buildPhases = (
+				F91760A7197A2AAD0031CF06 /* Sources */,
+				F91760A8197A2AAD0031CF06 /* Frameworks */,
+				F91760A9197A2AAD0031CF06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Joom;
+			productName = Joom;
+			productReference = F91760AB197A2AAD0031CF06 /* Joom.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F91760D2197A2AAD0031CF06 /* JoomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "JoomTests" */;
+			buildPhases = (
+				F91760CF197A2AAD0031CF06 /* Sources */,
+				F91760D0197A2AAD0031CF06 /* Frameworks */,
+				F91760D1197A2AAD0031CF06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F91760D9197A2AAD0031CF06 /* PBXTargetDependency */,
+			);
+			name = JoomTests;
+			productName = JoomTests;
+			productReference = F91760D3197A2AAD0031CF06 /* JoomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F91760A3197A2AAD0031CF06 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RV;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = rohitv;
+				TargetAttributes = {
+					F91760D2197A2AAD0031CF06 = {
+						TestTargetID = F91760AA197A2AAD0031CF06;
+					};
+				};
+			};
+			buildConfigurationList = F91760A6197A2AAD0031CF06 /* Build configuration list for PBXProject "Joom" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F91760A2197A2AAD0031CF06;
+			productRefGroup = F91760AC197A2AAD0031CF06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F91760AA197A2AAD0031CF06 /* Joom */,
+				F91760D2197A2AAD0031CF06 /* JoomTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F91760A9197A2AAD0031CF06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91760BB197A2AAD0031CF06 /* InfoPlist.strings in Resources */,
+				F91760CE197A2AAD0031CF06 /* Images.xcassets in Resources */,
+				F91760CC197A2AAD0031CF06 /* Spaceship.png in Resources */,
+				F91760C4197A2AAD0031CF06 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F91760D1197A2AAD0031CF06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91760DF197A2AAD0031CF06 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F91760A7197A2AAD0031CF06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91760C1197A2AAD0031CF06 /* RVAppDelegate.m in Sources */,
+				F91760C7197A2AAD0031CF06 /* RVViewController.m in Sources */,
+				F91760CA197A2AAD0031CF06 /* RVMyScene.m in Sources */,
+				F91760BD197A2AAD0031CF06 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F91760CF197A2AAD0031CF06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91760E1197A2AAD0031CF06 /* JoomTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F91760D9197A2AAD0031CF06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F91760AA197A2AAD0031CF06 /* Joom */;
+			targetProxy = F91760D8197A2AAD0031CF06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F91760B9197A2AAD0031CF06 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F91760BA197A2AAD0031CF06 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F91760C2197A2AAD0031CF06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F91760C3197A2AAD0031CF06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F91760DD197A2AAD0031CF06 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F91760DE197A2AAD0031CF06 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F91760E2197A2AAD0031CF06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F91760E3197A2AAD0031CF06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F91760E5197A2AAD0031CF06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
+				INFOPLIST_FILE = "Joom/Joom-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F91760E6197A2AAD0031CF06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
+				INFOPLIST_FILE = "Joom/Joom-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F91760E8197A2AAD0031CF06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Joom.app/Joom";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JoomTests/JoomTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F91760E9197A2AAD0031CF06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Joom.app/Joom";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
+				INFOPLIST_FILE = "JoomTests/JoomTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F91760A6197A2AAD0031CF06 /* Build configuration list for PBXProject "Joom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F91760E2197A2AAD0031CF06 /* Debug */,
+				F91760E3197A2AAD0031CF06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F91760E4197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Joom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F91760E5197A2AAD0031CF06 /* Debug */,
+				F91760E6197A2AAD0031CF06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "JoomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F91760E8197A2AAD0031CF06 /* Debug */,
+				F91760E9197A2AAD0031CF06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F91760A3197A2AAD0031CF06 /* Project object */;
+}
