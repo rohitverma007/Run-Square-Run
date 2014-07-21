@@ -6,6 +6,17 @@
 //  Copyright (c) 2014 rohitv. All rights reserved.
 //
 
+//TODO
+//Look into optimizing.. fps decreases, cpu increases? memory management?
+//Fix the generator, clean up code, check if good idea to put it in update?
+//Fix ball moving back a bit?
+//Implement random height
+//Implement smallBlocks, bigBlocks
+//Implement power ups
+//Implement score
+//Implement main menu/ game over - retry
+
+
 #import "RVMyScene.h"
 
 static const uint32_t ballCat = 1;
@@ -17,8 +28,12 @@ SKSpriteNode *ball;
 //SKSpriteNode *platform;
 SKSpriteNode *smallBlock;
 BOOL touchingGround = NO;
+SKSpriteNode *platform;
+SKSpriteNode *platform1;
 SKSpriteNode *platform2;
 BOOL addedPlatform = NO;
+float totalWidth = 0;
+float oldSize = 0;
 
 const int rWIDTH = 1;
 const int rSPACE = 2;
@@ -35,9 +50,10 @@ const int rSPACE = 2;
         ball.position = CGPointMake(ball.size.width/2, self.size.height/2);
         ball.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ball.size];
         ball.physicsBody.friction = 0;
+//        ball.physicsBody.restitution = 0;
         ball.physicsBody.categoryBitMask = ballCat;
         ball.physicsBody.contactTestBitMask = smallBlockCat | platformCat;
-//        ball.physicsBody.velocity = CGVectorMake(10, 0);
+        ball.physicsBody.velocity = CGVectorMake(45, 0);
 //        [ball.physicsBody applyImpulse:CGVectorMake(20, 0)];
         [self generatePlatforms:size];
 //        platform.physicsBody.velocity = CGVectorMake(-60, 0);
@@ -79,60 +95,86 @@ const int rSPACE = 2;
     return randNumber;
 };
 
-
+//-(void) generateSinglePlatform:(CGSize)size :(SKSpriteNode*)lastPlatform{
+//    
+//    
+//    
+//}
 
 
 -(void) generatePlatforms:(CGSize)size{
     
 //    for(int i = 0; i < 3; i++){
 //    int randSpace = [self generateRandNumber:rSPACE :size];
-    SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 2];
+    SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-200, 0) duration: 1];
     SKAction *forever = [SKAction repeatActionForever:movePlatform];
+    int space1 = 100;
+    int space2 = 200;
+    int space3 = 300;
     
+    if(addedPlatform){
     
+        platform = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
+        platform.position = CGPointMake(platform2.position.x+platform2.size.width/2+space1+platform.size.width/2, platform.size.height/2);
+        platform.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform.size];
+        platform.physicsBody.dynamic = NO;
+        platform.physicsBody.categoryBitMask = platformCat;
+//        space1 += 300;
+        space2 += 300;
+        space3 += 300;
+        totalWidth = platform.size.width;
+        NSLog(@"hi");
+        
+    }else {
     
-    SKSpriteNode *platform = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
+    platform = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
     platform.position = CGPointMake(platform.size.width/2, platform.size.height/2);
     platform.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform.size];
     platform.physicsBody.dynamic = NO;
     platform.physicsBody.categoryBitMask = platformCat;
+        oldSize = platform.size.width;
+        totalWidth += platform.size.width;
+        
+      
+
+    }
+  
     
     
-    SKSpriteNode *platform1 = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
-    platform1.position = CGPointMake(platform.size.width+100+platform1.size.width/2, platform1.size.height/2);
+    platform1 = [SKSpriteNode spriteNodeWithColor:[SKColor yellowColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
+    platform1.position = CGPointMake(platform.size.width/2+platform.position.x+space1+platform1.size.width/2, platform1.size.height/2);
     platform1.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform1.size];
     platform1.physicsBody.dynamic = NO;
     platform1.physicsBody.categoryBitMask = platformCat;
+    totalWidth += platform1.size.width;
+    [platform1 runAction:forever];
+    
+    [self addChild:platform1];
     
     
-    platform2 = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
-    platform2.position = CGPointMake(platform.size.width+200+platform1.size.width+platform2.size.width/2, platform2.size.height/2);
+    platform2 = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
+    platform2.position = CGPointMake(platform1.position.x+platform1.size.width/2+space1+platform2.size.width/2, platform2.size.height/2);
     platform2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform2.size];
     platform2.physicsBody.dynamic = NO;
     platform2.physicsBody.categoryBitMask = platformCat;
     platform2.name = @"lastPlatform";
+    totalWidth += platform2.size.width;
+    [platform2 runAction:forever];
+    [self addChild:platform2];
 
     
-    
-    
 //
-//    
+//
 //    SKSpriteNode *platform2 = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake(randWidth, size.height/2)];
 //    platform2.position = CGPointMake(platform.size.width+randSpace+platform.size.width/2, platform1.size.height/2);
 //    platform2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform1.size];
 //    platform2.physicsBody.dynamic = NO;
 //    platform2.physicsBody.categoryBitMask = platformCat;
 
-    NSLog(@"abcef %f, %f", platform.size.width, platform1.size.width);
 
     [platform runAction:forever];
-    
-    [platform1 runAction:forever];
-    [platform2 runAction:forever];
 
     [self addChild:platform];
-    [self addChild:platform1];
-    [self addChild:platform2];
 
 //    }
 
@@ -154,22 +196,11 @@ const int rSPACE = 2;
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
         
         notBall = contact.bodyB;
-        NSLog(@"touched a brick body b");
     } else {
         notBall = contact.bodyA;
-        NSLog(@"touched a brick body a");
         
     }
 
-    NSLog(@"touched a brick body a %@", notBall.node.name);
-//    if(touchingGround == NO){
-//    if([notBall.node.name  isEqual: @"lastPlatform"]){
-//        touchingGround = YES;
-//        [self generatePlatforms:self.frame.size];
-//
-//    }
-//    }
-//    [notBall.node removeFromParent];
 
     if(notBall.categoryBitMask == smallBlockCat){
         [notBall.node removeFromParent];
@@ -186,6 +217,12 @@ const int rSPACE = 2;
         addedPlatform = YES;
         [self generatePlatforms:self.size]; //Change to generate platform (single)
     }
+    }
+    
+    if(addedPlatform){
+        if(platform2.position.x < self.size.width){
+            addedPlatform = NO;
+        }
     }
 }
 
