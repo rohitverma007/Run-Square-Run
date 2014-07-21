@@ -473,6 +473,7 @@
 				F91760E6197A2AAD0031CF06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "JoomTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +482,7 @@
 				F91760E9197A2AAD0031CF06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

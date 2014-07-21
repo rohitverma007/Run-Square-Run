@@ -11,10 +11,8 @@
 
 @implementation RVViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
@@ -26,6 +24,7 @@
     
     // Present the scene.
     [skView presentScene:scene];
+    
 }
 
 - (BOOL)shouldAutorotate
