@@ -18,6 +18,7 @@
 //Check difference between adding public variables here or in .h file...
 //Remove platformCat?
 //Hide status bar
+//look into intenrary if statements/shortcut variable if statements
 
 #import "RVMyScene.h"
 
@@ -39,8 +40,8 @@ SKAction *forever;
 BOOL addedPlatform = NO;
 float totalWidth = 0;
 float oldSize = 0;
-float oldSmallBlockSize = 0;
-float oldBigBlockSize = 0;
+float lastSmallBlockSize = 0;
+float lastBigBlockSize = 0;
 const int rWIDTH = 1;
 const int rSPACE = 2;
 int totalScore = 0;
@@ -93,15 +94,26 @@ int totalScore = 0;
 }
 
 -(void)generateSmallBlocks:(CGSize)size{
+    float oldSmallBlockSize = 0;
     for(int i = 0; i < 5; i++){
+//        if(lastSmallBlockSize > 0){
+//            smallBlock = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(10, 10)];
+//            smallBlock.position = CGPointMake(lastSmallBlockSize+100+smallBlock.size.width/2, size.height/2+smallBlock.size.height/2);
+//            smallBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:smallBlock.size];
+//            smallBlock.physicsBody.dynamic = NO;
+//            smallBlock.physicsBody.categoryBitMask = smallBlockCat;
+//            oldSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
+//        } else {
         smallBlock = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(10, 10)];
-        smallBlock.position = CGPointMake(oldSmallBlockSize+100+smallBlock.size.width/2, size.height/2+smallBlock.size.height/2);
+        smallBlock.position = CGPointMake([self generateRandNumber:rSPACE :size]+smallBlock.size.width/2, size.height/2+smallBlock.size.height/2);
         smallBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:smallBlock.size];
         smallBlock.physicsBody.dynamic = NO;
         smallBlock.physicsBody.categoryBitMask = smallBlockCat;
         oldSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
+//        }
         if(i == 4){
             smallBlock.name = @"lastSmallBlock";
+            lastSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
         }
         [smallBlock runAction:forever];
         [self addChild:smallBlock];
@@ -109,18 +121,19 @@ int totalScore = 0;
 }
 
 -(void)generateBigBlocks:(CGSize)size{
+    float oldBigBlockSize = 0;
     for(int i = 0; i < 5; i++){
         
         if(i == 0){
             bigBlock = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10, 20)];
-            bigBlock.position = CGPointMake(oldSmallBlockSize+100+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
+            bigBlock.position = CGPointMake(lastSmallBlockSize+100+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
             bigBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bigBlock.size];
             bigBlock.physicsBody.dynamic = NO;
             bigBlock.physicsBody.categoryBitMask = bigBlockCat;
             oldBigBlockSize = bigBlock.position.x+bigBlock.size.width;
         } else {
             bigBlock = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10, 20)];
-            bigBlock.position = CGPointMake(oldBigBlockSize+100+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
+            bigBlock.position = CGPointMake([self generateRandNumber:rSPACE :size]+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
             bigBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bigBlock.size];
             bigBlock.physicsBody.dynamic = NO;
             bigBlock.physicsBody.categoryBitMask = bigBlockCat;
@@ -142,7 +155,7 @@ int totalScore = 0;
         randNumber = arc4random() % ((int)size.width - min) + 50;
     }
     if(rType == 2){ //Space
-        randNumber = arc4random() % (150 - 50) +50;
+        randNumber = arc4random() % ((int)size.width - 0) + (int)size.width;
     }
     return randNumber;
 };
