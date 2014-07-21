@@ -113,6 +113,7 @@ int totalScore = 0;
 //        }
         if(i == 4){
             smallBlock.name = @"lastSmallBlock";
+            smallBlock.color = [SKColor blueColor];
             lastSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
         }
         [smallBlock runAction:forever];
@@ -141,6 +142,7 @@ int totalScore = 0;
         }
         if(i == 4){
             bigBlock.name = @"lastBigBlock";
+            bigBlock.color = [SKColor blueColor];
         }
         [bigBlock runAction:forever];
         [self addChild:bigBlock];
