@@ -20,6 +20,9 @@
 //Hide status bar
 //look into intenrary if statements/shortcut variable if statements
 
+
+//1. fix jumping.. x appplyimpulse? but no velocity!
+
 #import "RVMyScene.h"
 
 static const uint32_t ballCat = 1;
@@ -45,6 +48,9 @@ float lastBigBlockSize = 0;
 const int rWIDTH = 1;
 const int rSPACE = 2;
 int totalScore = 0;
+BOOL appliedImpulse = false;
+BOOL onAir = false;
+int touched = 0;
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -67,6 +73,7 @@ int totalScore = 0;
 //        ball.physicsBody.restitution = 0;
         ball.physicsBody.categoryBitMask = ballCat;
         ball.physicsBody.contactTestBitMask = smallBlockCat | platformCat | bigBlockCat;
+        ball.physicsBody.collisionBitMask = platformCat;
         ball.physicsBody.velocity = CGVectorMake(45, 0);
         ball.physicsBody.allowsRotation = NO;
 //        [ball.physicsBody applyImpulse:CGVectorMake(20, 0)];
@@ -105,7 +112,7 @@ int totalScore = 0;
 //            oldSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
 //        } else {
         smallBlock = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(10, 10)];
-        smallBlock.position = CGPointMake([self generateRandNumber:rSPACE :size]+smallBlock.size.width/2, size.height/2+smallBlock.size.height/2);
+        smallBlock.position = CGPointMake([self generateRandNumber:rSPACE :size], size.height/2+smallBlock.size.height/2);
         smallBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:smallBlock.size];
         smallBlock.physicsBody.dynamic = NO;
         smallBlock.physicsBody.categoryBitMask = smallBlockCat;
@@ -125,21 +132,21 @@ int totalScore = 0;
     float oldBigBlockSize = 0;
     for(int i = 0; i < 5; i++){
         
-        if(i == 0){
+//        if(i == 0){
+//            bigBlock = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10, 20)];
+//            bigBlock.position = CGPointMake(lastSmallBlockSize+100+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
+//            bigBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bigBlock.size];
+//            bigBlock.physicsBody.dynamic = NO;
+//            bigBlock.physicsBody.categoryBitMask = bigBlockCat;
+//            oldBigBlockSize = bigBlock.position.x+bigBlock.size.width;
+//        } else {
             bigBlock = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10, 20)];
-            bigBlock.position = CGPointMake(lastSmallBlockSize+100+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
+            bigBlock.position = CGPointMake([self generateRandNumber:rSPACE :size], size.height/2+bigBlock.size.height/2);
             bigBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bigBlock.size];
             bigBlock.physicsBody.dynamic = NO;
             bigBlock.physicsBody.categoryBitMask = bigBlockCat;
             oldBigBlockSize = bigBlock.position.x+bigBlock.size.width;
-        } else {
-            bigBlock = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10, 20)];
-            bigBlock.position = CGPointMake([self generateRandNumber:rSPACE :size]+bigBlock.size.width/2, size.height/2+bigBlock.size.height/2);
-            bigBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bigBlock.size];
-            bigBlock.physicsBody.dynamic = NO;
-            bigBlock.physicsBody.categoryBitMask = bigBlockCat;
-            oldBigBlockSize = bigBlock.position.x+bigBlock.size.width;
-        }
+//        }
         if(i == 4){
             bigBlock.name = @"lastBigBlock";
             bigBlock.color = [SKColor blueColor];
@@ -157,7 +164,7 @@ int totalScore = 0;
         randNumber = arc4random() % ((int)size.width - min) + 50;
     }
     if(rType == 2){ //Space
-        randNumber = arc4random() % ((int)size.width - 0) + (int)size.width;
+        randNumber = arc4random() % (int)size.width;
     }
     return randNumber;
 };
@@ -173,9 +180,9 @@ int totalScore = 0;
     
 //    for(int i = 0; i < 3; i++){
 //    int randSpace = [self generateRandNumber:rSPACE :size];
-    SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-200, 0) duration: 1];
+    SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 2];
     SKAction *forever = [SKAction repeatActionForever:movePlatform];
-    int space1 = 100;
+    int space1 = 20;
     int space2 = 200;
     int space3 = 300;
     
@@ -247,8 +254,14 @@ int totalScore = 0;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 //    platform.physicsBody.velocity = platform.physicsBody.velocity;
 
+    if(onAir == false){
+        touched++;
+        appliedImpulse = true;
     ball.physicsBody.velocity = CGVectorMake(0, 0);
-    [ball.physicsBody applyImpulse:CGVectorMake(0, 3.5)];
+    [ball.physicsBody applyImpulse:CGVectorMake(0, 3)];
+//        ball.physicsBody.velocity = CGVectorMake(0, 0);
+
+    }
 //    [ball.physicsBody applyForce:CGVectorMake(0, 10)];
     
 }
@@ -270,8 +283,11 @@ int totalScore = 0;
         [notBall.node removeFromParent];
         totalScore++;
         score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
-        SKAction *scaleBy = [SKAction scaleBy:1.3 duration:2];
-        [ball runAction:scaleBy];
+//        SKAction *scaleBy = [SKAction scaleBy:1.3 duration:2];
+//        [ball runAction:scaleBy];
+        if(touched > 0){ //Put this if statement in the correct place!
+            ball.physicsBody.velocity = CGVectorMake(0, 0);
+        }
         if([notBall.node.name isEqualToString:@"lastSmallBlock"]){
             [self generateSmallBlocks:self.frame.size];
         }
@@ -283,17 +299,55 @@ int totalScore = 0;
         [notBall.node removeFromParent];
         totalScore--;
         score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
-        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
-        [ball runAction:scaleBy];
-        
+//        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
+//        [ball runAction:scaleBy];
+
+        if(touched > 0){ //Put this if statement in the correct place!
+            ball.physicsBody.velocity = CGVectorMake(0, 0);
+        }
         if([notBall.node.name isEqualToString:@"lastBigBlock"]){
             [self generateBigBlocks:self.frame.size];
         }
     }
     
-    
 
+    if(notBall.categoryBitMask == platformCat){
+                NSLog(@"Started Contact");
+        if(touched > 0){ //Put this if statement in the correct place!
+            ball.physicsBody.velocity = CGVectorMake(0, 0);
+        }
+//        if(appliedImpulse == true){
+            onAir = false;
+//        }
+    }
     
+    
+        NSLog(@"%d", touched);
+    
+}
+
+-(void)didEndContact:(SKPhysicsContact *)contact{
+    SKPhysicsBody *notBall;
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
+        
+        notBall = contact.bodyB;
+    } else {
+        notBall = contact.bodyA;
+        
+    }
+    
+    if(notBall.categoryBitMask == platformCat){
+        NSLog(@"Ended Contact");
+       
+//        if(appliedImpulse == true){
+
+//        if(appliedImpulse == true){
+//            touchedGround = false;
+//        } else {
+//            touchedGround = true;
+//        }
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -303,7 +357,10 @@ int totalScore = 0;
         [self generatePlatforms:self.size]; //Change to generate platform (single)
     }
     }
-    
+    if(touched == 2){
+        touched = 0;
+        onAir = true;}
+
     if(addedPlatform){
         if(platform2.position.x < self.size.width){
             addedPlatform = NO;
