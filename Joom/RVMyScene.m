@@ -56,39 +56,20 @@ int touched = 0;
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
-//        NSLog(@"%f", size.width);
-//        CGSize abcd = size;
-//        platform = [abc init:abcd];
-        
+
         self.backgroundColor = [SKColor blackColor];
         self.physicsWorld.contactDelegate = self;
         platformsArray = [NSMutableArray array];
 
-//        self.physicsWorld.gravity = CGVectorMake(0, 0);
         platform = [[RVPlatform alloc ]init:size];
         [platform setPosition:CGPointMake(platform.size.width/2, platform.size.height/2)];
         
         SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 2];
-        //    SKAction *scalePlatform = [SKAction scaleYTo:0.8 duration:20];
-        //    SKAction *foreverG = [SKAction group:@[movePlatform, scalePlatform]];
         forever = [SKAction repeatActionForever:movePlatform];
 
         [platform runAction:forever];
         [platformsArray addObject:platform];
 
-//        [self addChild:platform];
-//        
-//        int prevPositionX = platform.position.x;
-//        int prevSpace = 50;
-//        int prevWidth = platform.size.width;
-//        platform = [[RVPlatform alloc]init:self.size];
-//        [platform setPosition:CGPointMake(prevPositionX+prevWidth/2+prevSpace+platform.size.width/2, platform.size.height/2)];
-////        [platformsArray addObject:platform];
-//
-//        [platform runAction:forever];
-////        [self addChild:platform];
-//        
         
          int prevPositionX = platform.position.x;
          int prevSpace = 50;
@@ -219,87 +200,7 @@ int touched = 0;
 //}
 
 
--(void) generatePlatforms:(CGSize)size{
-    
-    
 
-    
-    
-
-    
-//    for(int i = 0; i < 3; i++){
-//    int randSpace = [self generateRandNumber:rSPACE :size];
-    SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 2];
-    SKAction *forever = [SKAction repeatActionForever:movePlatform];
-    int space1 = 20;
-    int space2 = 200;
-    int space3 = 300;
-    
-    if(addedPlatform){
-    
-        platform = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
-        platform.position = CGPointMake(platform2.position.x+platform2.size.width/2+space1+platform.size.width/2, platform.size.height/2);
-        platform.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform.size];
-        platform.physicsBody.dynamic = NO;
-        platform.physicsBody.categoryBitMask = platformCat;
-//        space1 += 300;
-        space2 += 300;
-        space3 += 300;
-        totalWidth = platform.size.width;
-    }else {
-    
-    platform = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
-    platform.position = CGPointMake(platform.size.width/2, platform.size.height/2);
-    platform.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform.size];
-    platform.physicsBody.dynamic = NO;
-    platform.physicsBody.categoryBitMask = platformCat;
-        oldSize = platform.size.width;
-        totalWidth += platform.size.width;
-        
-      
-
-    }
-  
-    
-    
-    platform1 = [SKSpriteNode spriteNodeWithColor:[SKColor brownColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
-    platform1.position = CGPointMake(platform.size.width/2+platform.position.x+space1+platform1.size.width/2, platform1.size.height/2);
-    platform1.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform1.size];
-    platform1.physicsBody.dynamic = NO;
-    platform1.physicsBody.categoryBitMask = platformCat;
-    totalWidth += platform1.size.width;
-    [platform1 runAction:forever];
-    
-    [self addChild:platform1];
-    
-    
-    platform2 = [SKSpriteNode spriteNodeWithColor:[SKColor grayColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
-    platform2.position = CGPointMake(platform1.position.x+platform1.size.width/2+space1+platform2.size.width/2, platform2.size.height/2);
-    platform2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform2.size];
-    platform2.physicsBody.dynamic = NO;
-    platform2.physicsBody.categoryBitMask = platformCat;
-    platform2.name = @"lastPlatform";
-    totalWidth += platform2.size.width;
-    [platform2 runAction:forever];
-    [self addChild:platform2];
-
-    
-//
-//
-//    SKSpriteNode *platform2 = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake(randWidth, size.height/2)];
-//    platform2.position = CGPointMake(platform.size.width+randSpace+platform.size.width/2, platform1.size.height/2);
-//    platform2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:platform1.size];
-//    platform2.physicsBody.dynamic = NO;
-//    platform2.physicsBody.categoryBitMask = platformCat;
-
-
-    [platform runAction:forever];
-
-    [self addChild:platform];
-
-//    }
-
-}
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 //    platform.physicsBody.velocity = platform.physicsBody.velocity;
     SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 1];
