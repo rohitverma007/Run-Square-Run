@@ -69,13 +69,19 @@ static const uint32_t platformCat = 2;
 
 -(RVPlatform*)createFirstPlatform:(CGSize)size {
     int rWIDTH = 1;
-
+    
     RVPlatform *firstPlatform = [RVPlatform spriteNodeWithColor:[SKColor redColor] size:CGSizeMake([self generateRandNumber:rWIDTH :size], size.height/2)];
     self.position = CGPointMake(_prevPositionX+_prevWidth/2+_prevSpace+self.size.width/2, self.size.height/2);
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.dynamic = NO;
     self.physicsBody.categoryBitMask = platformCat;
     return firstPlatform;
+    
+}
+
++(void)overrideAction:(SKAction *)action{
+//    [self setSpriteAction]
+    
     
 }
 @end

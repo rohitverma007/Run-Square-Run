@@ -25,6 +25,7 @@
 		F91760DF197A2AAD0031CF06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F91760DD197A2AAD0031CF06 /* InfoPlist.strings */; };
 		F91760E1197A2AAD0031CF06 /* JoomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760E0197A2AAD0031CF06 /* JoomTests.m */; };
 		F9254D94197F253400661229 /* RVPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D93197F253400661229 /* RVPlatform.m */; };
+		F9254D9F197F6DC200661229 /* RVHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D9E197F6DC200661229 /* RVHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		F91760E0197A2AAD0031CF06 /* JoomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoomTests.m; sourceTree = "<group>"; };
 		F9254D92197F253400661229 /* RVPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVPlatform.h; sourceTree = "<group>"; };
 		F9254D93197F253400661229 /* RVPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVPlatform.m; sourceTree = "<group>"; };
+		F9254D9D197F6DC200661229 /* RVHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVHelper.h; sourceTree = "<group>"; };
+		F9254D9E197F6DC200661229 /* RVHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 				F91760CB197A2AAD0031CF06 /* Spaceship.png */,
 				F91760CD197A2AAD0031CF06 /* Images.xcassets */,
 				F91760B7197A2AAD0031CF06 /* Supporting Files */,
+				F9254D9D197F6DC200661229 /* RVHelper.h */,
+				F9254D9E197F6DC200661229 /* RVHelper.m */,
 			);
 			path = Joom;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				F91760C1197A2AAD0031CF06 /* RVAppDelegate.m in Sources */,
 				F91760C7197A2AAD0031CF06 /* RVViewController.m in Sources */,
 				F91760CA197A2AAD0031CF06 /* RVMyScene.m in Sources */,
+				F9254D9F197F6DC200661229 /* RVHelper.m in Sources */,
 				F91760BD197A2AAD0031CF06 /* main.m in Sources */,
 				F9254D94197F253400661229 /* RVPlatform.m in Sources */,
 			);

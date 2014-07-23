@@ -21,10 +21,15 @@
 //look into intenrary if statements/shortcut variable if statements
 
 
+
 //1. fix jumping.. x appplyimpulse? but no velocity!
 //TODO Automate first platform
+//TODO Figure out how to set action properly... currently thinking of implementing delegates?
+// Currently resetting action... should only modify it temporarily? maybe use callbacks???
 #import "RVMyScene.h"
 #import "RVPlatform.h"
+#import "RVHelper.h"
+
 static const uint32_t ballCat = 1;
 static const uint32_t platformCat = 2;
 static const uint32_t smallBlockCat = 4;
@@ -52,11 +57,39 @@ int totalScore = 0;
 BOOL appliedImpulse = false;
 BOOL onAir = false;
 int touched = 0;
+//SKAction *movePlatform;
 
+
+-(SKAction*)getAction{
+    return forever;
+}
+
+-(void)setAction:(SKAction*)movePlat :(BOOL)isForever{
+    
+    SKAction* movePlatform = movePlat;
+    if(isForever){
+    forever = [SKAction repeatActionForever:movePlatform];
+    } else {
+        forever = movePlatform;
+    }
+    
+}
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
 
+        
+        
+//        
+//        SKSpriteNode *testing123  = [SKSpriteNode spriteNodeWithColor:[SKColor blueColor] size:CGSizeMake(100, 100)];
+//        testing123.position = CGPointMake(size.width/2, size.height/2);
+//
+//        testing123.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:testing123.size];
+////        testing123.physicsBody.dynamic = NO;
+//        testing123.physicsBody.velocity = CGVectorMake(30, 0);
+////        [testing123.physicsBody applyImpulse:CGVectorMake(50, 50)];
+//        [self addChild:testing123];
+//        [testing123 removeFromParent];
         self.backgroundColor = [SKColor blackColor];
         self.physicsWorld.contactDelegate = self;
         platformsArray = [NSMutableArray array];
@@ -64,24 +97,15 @@ int touched = 0;
         platform = [[RVPlatform alloc ]init:size];
         [platform setPosition:CGPointMake(platform.size.width/2, platform.size.height/2)];
         
-        SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 2];
-        forever = [SKAction repeatActionForever:movePlatform];
+        [self setAction:[SKAction moveBy:CGVectorMake(-100, 0) duration: 3] :true];
 
-        [platform runAction:forever];
+        [platform runAction:[self getAction]];
         [platformsArray addObject:platform];
 
+        [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
         
-         int prevPositionX = platform.position.x;
-         int prevSpace = 50;
-         int prevWidth = platform.size.width;
-
-        [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)(prevPositionX+prevWidth/2+prevSpace) :forever]];
-
-        CGPoint prevpos = [platformsArray.lastObject position];
-        CGSize prevwid = [platformsArray.lastObject size];
+        [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
         
-        [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)(prevpos.x+prevwid.width/2+prevSpace) :forever]];
-        NSLog(@"%lu", (unsigned long)platformsArray.count);
         for(int i = 0; i < [platformsArray count]; i++){
             [self addChild:platformsArray[i]];
         }
@@ -193,24 +217,19 @@ int touched = 0;
     return randNumber;
 };
 
-//-(void) generateSinglePlatform:(CGSize)size :(SKSpriteNode*)lastPlatform{
-//    
-//    
-//    
-//}
-
-
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 //    platform.physicsBody.velocity = platform.physicsBody.velocity;
-    SKAction *movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 1];
+    [self setAction:[SKAction moveBy:CGVectorMake(-200, 0) duration: 1] :false];
+//    SKAction *imStupid = [SKAction moveBy:CGVectorMake(-200, 0) duration: 0.4];
+//    movePlatform = ;
     //    SKAction *scalePlatform = [SKAction scaleYTo:0.8 duration:20];
     //    SKAction *foreverG = [SKAction group:@[movePlatform, scalePlatform]];
-    SKAction *forever = [SKAction repeatActionForever:movePlatform];
-    NSLog(@"%@", platformsArray[0]);
-    for(int i = 0; i < [platformsArray count]; i++){
-        NSLog(@"%@", platformsArray[i]);
-        [platformsArray[i] runAction:forever];
+//    forever = [SKAction repeatActionForever:movePlatform];
+//    NSLog(@"%@", platformsArray[0]);
+   for(int i = 0; i < [platformsArray count]; i++){
+//        NSLog(@"%@", platformsArray[i]);
+       [platformsArray[i] runAction:[self getAction]];
     }
     
     
@@ -319,7 +338,71 @@ int touched = 0;
     }
 }
 
+-(void)generatePlatforms{
+//    movePlatform = [SKAction moveBy:CGVectorMake(-100, 0) duration: 2];
+//    forever = [SKAction repeatActionForever:movePlatform];
+//    NSLog(@"OOOOOOO %@ LOOOOOOOL", [self getAction]);
+    [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
+    [self addChild:platformsArray.lastObject];
+    [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
+    [self addChild:platformsArray.lastObject];
+    
+    [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
+    [self addChild:platformsArray.lastObject];
+}
+
 -(void)update:(CFTimeInterval)currentTime {
+    NSLog(@"%lu", (unsigned long)platformsArray.count);
+
+//    for(int i = 0; i < [platformsArray count]; i++){
+////        [platformsArray[i] runAction:forever];
+//    }
+    
+//    for(int i = 0; i < [platformsArray count]; i++){
+//        //        NSLog(@"%@", platformsArray[i]);
+////        [platformsArray[i] runAction:forever];
+//        CGPoint abc = [platformsArray[i] position];
+//        if(abc.x < 0){
+//            [platformsArray removeObject:platformsArray[i]];
+//        }
+//    }
+    
+    CGPoint lastObject = [platformsArray.lastObject position];
+//    CGSize  lastSize = [platformsArray.lastObject size];
+//    if(lastObject.x < 0){
+//        [platformsArray removeAllObjects];
+//        
+//    }
+    NSLog(@"%@", platformsArray.lastObject);
+    
+    if(!addedPlatform){
+        if(lastObject.x < self.size.width){
+            
+            
+
+            addedPlatform = YES;
+           
+            
+                    [self generatePlatforms]; //Change to generate platform (single)
+        }
+    }
+    if(touched == 2){
+        touched = 0;
+        onAir = true;}
+    
+    if(addedPlatform){
+        if(lastObject.x < self.size.width){
+
+            addedPlatform = NO;
+        }
+    }
+    
+//    if(lastObject.x < 0){
+//        [platformsArray removeLastObject];
+//        NSLog(@"outside the dam ");
+//    }
+    
+    
     if(platform.position.x+platform.size.width < self.size.width){
         
 //        RVPlatform *platform;
@@ -330,23 +413,9 @@ int touched = 0;
         
         
     }
-    
-    
-    if(!addedPlatform){
-    if(platform2.position.x < self.size.width){
-        addedPlatform = YES;
-//        [self generatePlatforms:self.size]; //Change to generate platform (single)
-    }
-    }
-    if(touched == 2){
-        touched = 0;
-        onAir = true;}
+//    NSLog(@"%lu, lafkeofkoaekfoae", (unsigned long)platformsArray.count);
 
-    if(addedPlatform){
-        if(platform2.position.x < self.size.width){
-            addedPlatform = NO;
-        }
-    }
+
 }
 
 @end
