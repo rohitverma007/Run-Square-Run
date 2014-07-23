@@ -8,6 +8,15 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+BOOL lololol;
 @interface RVPlatform : SKSpriteNode
-
+-(id)init:(CGSize)size;
+-(void) createFirstPlatform;
+-(RVPlatform*) createNewPlatform;
+-(int) generateRandNumber:(int)rType :(CGSize)size;
+-(id)setNewPosition:(CGPoint)position;
+-(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action;
+@property (readwrite)int prevPositionX;
+@property (readwrite)int prevWidth;
+@property (readwrite)int prevSpace;
 @end

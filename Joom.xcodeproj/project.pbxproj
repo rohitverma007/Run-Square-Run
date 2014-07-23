@@ -24,6 +24,7 @@
 		F91760D7197A2AAD0031CF06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91760B2197A2AAD0031CF06 /* UIKit.framework */; };
 		F91760DF197A2AAD0031CF06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F91760DD197A2AAD0031CF06 /* InfoPlist.strings */; };
 		F91760E1197A2AAD0031CF06 /* JoomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760E0197A2AAD0031CF06 /* JoomTests.m */; };
+		F9254D94197F253400661229 /* RVPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D93197F253400661229 /* RVPlatform.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		F91760DC197A2AAD0031CF06 /* JoomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoomTests-Info.plist"; sourceTree = "<group>"; };
 		F91760DE197A2AAD0031CF06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F91760E0197A2AAD0031CF06 /* JoomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoomTests.m; sourceTree = "<group>"; };
+		F9254D92197F253400661229 /* RVPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVPlatform.h; sourceTree = "<group>"; };
+		F9254D93197F253400661229 /* RVPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVPlatform.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 			children = (
 				F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */,
 				F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */,
+				F9254D92197F253400661229 /* RVPlatform.h */,
+				F9254D93197F253400661229 /* RVPlatform.m */,
 				F91760C2197A2AAD0031CF06 /* Main.storyboard */,
 				F91760C5197A2AAD0031CF06 /* RVViewController.h */,
 				F91760C6197A2AAD0031CF06 /* RVViewController.m */,
@@ -267,6 +272,7 @@
 				F91760C7197A2AAD0031CF06 /* RVViewController.m in Sources */,
 				F91760CA197A2AAD0031CF06 /* RVMyScene.m in Sources */,
 				F91760BD197A2AAD0031CF06 /* main.m in Sources */,
+				F9254D94197F253400661229 /* RVPlatform.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
