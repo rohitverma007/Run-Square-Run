@@ -13,7 +13,6 @@ BOOL lololol;
 -(id)init:(CGSize)size;
 -(void) createFirstPlatform;
 -(RVPlatform*) createNewPlatform;
--(int) generateRandNumber:(int)rType :(CGSize)size;
 -(id)setNewPosition:(CGPoint)position;
 -(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action;
 +(void)overrideAction:(SKAction*)action;

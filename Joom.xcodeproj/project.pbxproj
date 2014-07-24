@@ -127,6 +127,7 @@
 		F91760B6197A2AAD0031CF06 /* Joom */ = {
 			isa = PBXGroup;
 			children = (
+				F97E96DB1980059000487537 /* iPad */,
 				F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */,
 				F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */,
 				F9254D92197F253400661229 /* RVPlatform.h */,
@@ -172,6 +173,13 @@
 				F91760DD197A2AAD0031CF06 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F97E96DB1980059000487537 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,8 +414,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
 				INFOPLIST_FILE = "Joom/Joom-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -420,8 +430,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
 				INFOPLIST_FILE = "Joom/Joom-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
