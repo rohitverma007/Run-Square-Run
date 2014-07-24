@@ -9,15 +9,24 @@
 #import "RVHelper.h"
 
 @implementation RVHelper
+
 +(int)generateRandNumber:(int)rType :(CGSize)size{
-    //Is this good? or maybe seprate into three different functions?
+    //    totalScore++;
     int randNumber = 0;
     int min = 50;
     if(rType == 1){ //Width
         randNumber = arc4random_uniform(((int)size.width-100) - min) + 50;
     }
-    
     if(rType == 2){ //Space
+        randNumber = arc4random_uniform((int)size.width);
+    }
+    
+    if(rType == 3){//Height
+        randNumber = arc4random_uniform((int)size.height-100) - (int)(size.height/2-100);
+        //        randNumber = arc4random() % (int)(size.height-100) - ((int)size.height/2+100);
+    }
+    
+    if(rType == 4){
         int temp =  arc4random() % 40;
         
         if (temp % 2 == 0) {
@@ -26,11 +35,6 @@
             randNumber = arc4random() % 40 + 15;
             
         }
-        
-    }
-    
-    if(rType == 3){ //Height
-        randNumber = arc4random_uniform((int)size.height-100) - (int)(size.height/2-100);
     }
     
     
@@ -38,7 +42,7 @@
 };
 
 +(int)getDistance:(RVPlatform *)prevPlatform{
-    
-    return prevPlatform.position.x+prevPlatform.size.width/2+[self generateRandNumber:2 :prevPlatform.size];
+
+    return prevPlatform.position.x+prevPlatform.size.width/2+[self generateRandNumber:4 :prevPlatform.size];
 }
 @end

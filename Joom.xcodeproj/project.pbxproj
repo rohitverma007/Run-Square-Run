@@ -26,6 +26,7 @@
 		F91760E1197A2AAD0031CF06 /* JoomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F91760E0197A2AAD0031CF06 /* JoomTests.m */; };
 		F9254D94197F253400661229 /* RVPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D93197F253400661229 /* RVPlatform.m */; };
 		F9254D9F197F6DC200661229 /* RVHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D9E197F6DC200661229 /* RVHelper.m */; };
+		F93137941980B3DD00DE2FD9 /* RVBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = F93137931980B3DD00DE2FD9 /* RVBlocks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		F9254D93197F253400661229 /* RVPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVPlatform.m; sourceTree = "<group>"; };
 		F9254D9D197F6DC200661229 /* RVHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVHelper.h; sourceTree = "<group>"; };
 		F9254D9E197F6DC200661229 /* RVHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVHelper.m; sourceTree = "<group>"; };
+		F93137921980B3DD00DE2FD9 /* RVBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RVBlocks.h; path = ../RVBlocks.h; sourceTree = "<group>"; };
+		F93137931980B3DD00DE2FD9 /* RVBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVBlocks.m; path = ../RVBlocks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */,
 				F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */,
 				F9254D92197F253400661229 /* RVPlatform.h */,
+				F93137921980B3DD00DE2FD9 /* RVBlocks.h */,
+				F93137931980B3DD00DE2FD9 /* RVBlocks.m */,
 				F9254D93197F253400661229 /* RVPlatform.m */,
 				F91760C2197A2AAD0031CF06 /* Main.storyboard */,
 				F91760C5197A2AAD0031CF06 /* RVViewController.h */,
@@ -287,6 +292,7 @@
 				F9254D9F197F6DC200661229 /* RVHelper.m in Sources */,
 				F91760BD197A2AAD0031CF06 /* main.m in Sources */,
 				F9254D94197F253400661229 /* RVPlatform.m in Sources */,
+				F93137941980B3DD00DE2FD9 /* RVBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

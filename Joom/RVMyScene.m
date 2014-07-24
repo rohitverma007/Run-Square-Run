@@ -30,6 +30,7 @@
 #import "RVPlatform.h"
 #import "RVHelper.h"
 
+//MOve these to rvhelper maybe?
 static const uint32_t ballCat = 1;
 static const uint32_t platformCat = 2;
 static const uint32_t smallBlockCat = 4;
@@ -57,8 +58,8 @@ int totalScore = 0;
 BOOL appliedImpulse = false;
 BOOL onAir = false;
 int touched = 0;
-//SKAction *movePlatform;
-
+bool addedBigBlocks = false;
+bool addedSmallBlocks = false;
 
 -(SKAction*)getAction{
     return forever;
@@ -249,7 +250,20 @@ int touched = 0;
     
     
     CGPoint lastObject = [platformsArray.lastObject position];
+//    CGPoint lastBigBlockPosition = [[self childNodeWithName:@"lastBigBlock"]position];
 
+//    if(!addedBigBlocks){
+//        if(lastBigBlockPosition.x < 50){
+//            addedBigBlocks = true;
+//            [self generateBigBlocks:self.size];
+//        }
+//    }
+    
+//    if(addedBigBlocks){
+//        if(lastBigBlockPosition.x < 50){
+//            addedBigBlocks = false;
+//        }
+//    }
     
     if(!addedPlatform){
         if(lastObject.x < self.size.width){
