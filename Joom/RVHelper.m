@@ -11,7 +11,7 @@
 @implementation RVHelper
 
 +(int)generateRandNumber:(int)rType :(CGSize)size{
-    //    totalScore++;
+    //TODO Maybe seprate into different functions?
     int randNumber = 0;
     int min = 50;
     if(rType == 1){ //Width
