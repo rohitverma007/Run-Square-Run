@@ -40,7 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F91760AB197A2AAD0031CF06 /* Joom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Joom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F91760AB197A2AAD0031CF06 /* Run Square Run.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Run Square Run.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91760AE197A2AAD0031CF06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F91760B0197A2AAD0031CF06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F91760B2197A2AAD0031CF06 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -48,7 +48,7 @@
 		F91760B8197A2AAD0031CF06 /* Joom-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Joom-Info.plist"; sourceTree = "<group>"; };
 		F91760BA197A2AAD0031CF06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F91760BC197A2AAD0031CF06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F91760BE197A2AAD0031CF06 /* Joom-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Joom-Prefix.pch"; sourceTree = "<group>"; };
+		F91760BE197A2AAD0031CF06 /* Run Square Run-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Run Square Run-Prefix.pch"; sourceTree = "<group>"; };
 		F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RVAppDelegate.h; sourceTree = "<group>"; };
 		F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVAppDelegate.m; sourceTree = "<group>"; };
 		F91760C3197A2AAD0031CF06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		F91760C9197A2AAD0031CF06 /* RVMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RVMyScene.m; sourceTree = "<group>"; };
 		F91760CB197A2AAD0031CF06 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		F91760CD197A2AAD0031CF06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F91760D3197A2AAD0031CF06 /* JoomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JoomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F91760D3197A2AAD0031CF06 /* Run Square RunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Run Square RunTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91760D4197A2AAD0031CF06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F91760DC197A2AAD0031CF06 /* JoomTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoomTests-Info.plist"; sourceTree = "<group>"; };
 		F91760DE197A2AAD0031CF06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 		F91760AC197A2AAD0031CF06 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F91760AB197A2AAD0031CF06 /* Joom.app */,
-				F91760D3197A2AAD0031CF06 /* JoomTests.xctest */,
+				F91760AB197A2AAD0031CF06 /* Run Square Run.app */,
+				F91760D3197A2AAD0031CF06 /* Run Square RunTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 				F91760B8197A2AAD0031CF06 /* Joom-Info.plist */,
 				F91760B9197A2AAD0031CF06 /* InfoPlist.strings */,
 				F91760BC197A2AAD0031CF06 /* main.m */,
-				F91760BE197A2AAD0031CF06 /* Joom-Prefix.pch */,
+				F91760BE197A2AAD0031CF06 /* Run Square Run-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,9 +190,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F91760AA197A2AAD0031CF06 /* Joom */ = {
+		F91760AA197A2AAD0031CF06 /* Run Square Run */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F91760E4197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Joom" */;
+			buildConfigurationList = F91760E4197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Run Square Run" */;
 			buildPhases = (
 				F91760A7197A2AAD0031CF06 /* Sources */,
 				F91760A8197A2AAD0031CF06 /* Frameworks */,
@@ -202,14 +202,14 @@
 			);
 			dependencies = (
 			);
-			name = Joom;
+			name = "Run Square Run";
 			productName = Joom;
-			productReference = F91760AB197A2AAD0031CF06 /* Joom.app */;
+			productReference = F91760AB197A2AAD0031CF06 /* Run Square Run.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F91760D2197A2AAD0031CF06 /* JoomTests */ = {
+		F91760D2197A2AAD0031CF06 /* Run Square RunTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "JoomTests" */;
+			buildConfigurationList = F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Run Square RunTests" */;
 			buildPhases = (
 				F91760CF197A2AAD0031CF06 /* Sources */,
 				F91760D0197A2AAD0031CF06 /* Frameworks */,
@@ -220,9 +220,9 @@
 			dependencies = (
 				F91760D9197A2AAD0031CF06 /* PBXTargetDependency */,
 			);
-			name = JoomTests;
+			name = "Run Square RunTests";
 			productName = JoomTests;
-			productReference = F91760D3197A2AAD0031CF06 /* JoomTests.xctest */;
+			productReference = F91760D3197A2AAD0031CF06 /* Run Square RunTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F91760A6197A2AAD0031CF06 /* Build configuration list for PBXProject "Joom" */;
+			buildConfigurationList = F91760A6197A2AAD0031CF06 /* Build configuration list for PBXProject "Run Square Run" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -253,8 +253,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F91760AA197A2AAD0031CF06 /* Joom */,
-				F91760D2197A2AAD0031CF06 /* JoomTests */,
+				F91760AA197A2AAD0031CF06 /* Run Square Run */,
+				F91760D2197A2AAD0031CF06 /* Run Square RunTests */,
 			);
 		};
 /* End PBXProject section */
@@ -309,7 +309,7 @@
 /* Begin PBXTargetDependency section */
 		F91760D9197A2AAD0031CF06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F91760AA197A2AAD0031CF06 /* Joom */;
+			target = F91760AA197A2AAD0031CF06 /* Run Square Run */;
 			targetProxy = F91760D8197A2AAD0031CF06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -418,10 +418,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
+				GCC_PREFIX_HEADER = "Joom/Run Square Run-Prefix.pch";
 				INFOPLIST_FILE = "Joom/Joom-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Square Run";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -434,10 +434,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
+				GCC_PREFIX_HEADER = "Joom/Run Square Run-Prefix.pch";
 				INFOPLIST_FILE = "Joom/Joom-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Square Run";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -460,7 +460,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "JoomTests/JoomTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Square RunTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -478,7 +478,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Joom/Joom-Prefix.pch";
 				INFOPLIST_FILE = "JoomTests/JoomTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Square RunTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -487,7 +487,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F91760A6197A2AAD0031CF06 /* Build configuration list for PBXProject "Joom" */ = {
+		F91760A6197A2AAD0031CF06 /* Build configuration list for PBXProject "Run Square Run" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F91760E2197A2AAD0031CF06 /* Debug */,
@@ -496,7 +496,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F91760E4197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Joom" */ = {
+		F91760E4197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Run Square Run" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F91760E5197A2AAD0031CF06 /* Debug */,
@@ -505,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "JoomTests" */ = {
+		F91760E7197A2AAD0031CF06 /* Build configuration list for PBXNativeTarget "Run Square RunTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F91760E8197A2AAD0031CF06 /* Debug */,
