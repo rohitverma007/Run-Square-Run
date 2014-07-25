@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>362252E9-0D79-4B0F-A23F-CAB969C657D7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Run Square Run</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C48EDB56-79D6-4107-9879-54E192E5759E</key>
+		<string>ssh://github.com/rohitverma007/Joom.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Run Square Run.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C48EDB56-79D6-4107-9879-54E192E5759E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/rohitverma007/Joom.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C48EDB56-79D6-4107-9879-54E192E5759E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C48EDB56-79D6-4107-9879-54E192E5759E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Joom</string>
+		</dict>
+	</array>
+</dict>
+</plist>

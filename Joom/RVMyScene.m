@@ -33,6 +33,12 @@
 
 //TODO MEMORY CLEANUP !!!!
 
+
+//TODO look into optional parameters
+
+//TODO Seprate methods for setnewposition depending on small block vs big block
+
+//TODO Render blocks much earlier, right now its too abrupt
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -72,6 +78,8 @@ BOOL onAir = false;
 int touched = 0;
 bool addedBigBlocks = false;
 bool addedSmallBlocks = false;
+bool setMultipleLayer = false;
+int newLayerY;
 
 -(SKAction*)getAction{
     return forever;
@@ -122,59 +130,14 @@ bool addedSmallBlocks = false;
         ball.physicsBody.collisionBitMask = platformCat;
         ball.physicsBody.allowsRotation = NO;
         
-        //TODO Maybe move these two functions to a class for reuse in other scenes?
-//        [self generateSmallBlocks:size];
-//        [self generateBigBlocks:size];
-        
+        //TODO Maybe move these two functions to a class for reuse in other scenes? -Done?
         
         smallBlocksArray = [NSMutableArray array];
         bigBlocksArray = [NSMutableArray array];
         
-//        smallBlockObj = [[RVBlocks alloc]init:size :true];
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:300 :[self getAction] :self.size]];
-        [self addChild:smallBlocksArray.lastObject];
-
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-        [self addChild:smallBlocksArray.lastObject];
-
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-        [self addChild:smallBlocksArray.lastObject];
-
-        
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-        [self addChild:smallBlocksArray.lastObject];
-
-//        for(int i = 0; i < [smallBlocksArray count]; i++){
-//            [self addChild:smallBlocksArray[i]];
-//        }
-        
-        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500 :[self getAction] :self.size]];
-        [self addChild:bigBlocksArray.lastObject];
-
-        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
-        [self addChild:bigBlocksArray.lastObject];
-
-        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
-        [self addChild:bigBlocksArray.lastObject];
-
-        
-        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
-        [self addChild:bigBlocksArray.lastObject];
-
-//        for(int i = 0; i < [bigBlocksArray count]; i++){
-//            [self addChild:bigBlocksArray[i]];
-//        }
-        
-        
-        
-        
-//        bigBlockObj = [[RVBlocks alloc]init:size :false];
-        
-        
-        
-        
-        
-        
+        [self generateSmallBlocks:size :arc4random_uniform(10)];
+        [self generateBigBlocks:size];
+    
         //Helper function maybe?
         score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
@@ -188,33 +151,42 @@ bool addedSmallBlocks = false;
     return self;
 }
 
--(void)generateSmallBlocks:(CGSize)size{
-    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:400 :[self getAction] :self.size]];
+-(void)generateSmallBlocks:(CGSize)size :(int)count{
+    
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:400 :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject :(int)newLayerY]];
     [self addChild:smallBlocksArray.lastObject];
     
-    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-    [self addChild:smallBlocksArray.lastObject];
+    for(int i = 1; i < count; i++){
+        if(i > 3){
+            setMultipleLayer = true;
+        }
+        
+        if(i == 4){
+            CGPoint last = [smallBlocksArray.lastObject position] ;
+            newLayerY = last.y;
+        }
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getSmallBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject  :(int)newLayerY]];
+        
+        [self addChild:smallBlocksArray.lastObject];
+        
+    }
     
-    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-    [self addChild:smallBlocksArray.lastObject];
+    setMultipleLayer = false;
     
-    
-    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-    [self addChild:smallBlocksArray.lastObject];
 }
 
 -(void)generateBigBlocks:(CGSize)size{
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500  :[self getAction] :self.size]];
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500  :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject :(int)newLayerY]];
     [self addChild:bigBlocksArray.lastObject];
     
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject  :(int)newLayerY]];
     [self addChild:bigBlocksArray.lastObject];
     
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject  :(int)newLayerY]];
     [self addChild:bigBlocksArray.lastObject];
     
     
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject  :(int)newLayerY]];
     [self addChild:bigBlocksArray.lastObject];
 }
 
@@ -253,7 +225,7 @@ bool addedSmallBlocks = false;
         //            ball.physicsBody.velocity = CGVectorMake(0, 0);
         //        }
         if([notBall.node.name isEqualToString:@"lastSmallBlock"]){
-            [self generateSmallBlocks:self.frame.size];
+            [self generateSmallBlocks:self.frame.size :(int)arc4random_uniform(10)];
         }
     }
     
@@ -320,7 +292,7 @@ bool addedSmallBlocks = false;
     if(!addedSmallBlocks){
         if(lastSmallBlockPosition.x < self.size.width/2){
             addedSmallBlocks = true;
-            [self generateSmallBlocks:self.size];
+            [self generateSmallBlocks:self.size :(int)arc4random_uniform(10)];
         }
     }
     

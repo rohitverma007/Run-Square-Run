@@ -13,5 +13,6 @@
 @interface RVHelper : RVAppDelegate
 +(int)getDistance:(RVPlatform*)prevPlatform;
 +(int)generateRandNumber:(int)rType :(CGSize)size;
-+(int)getBlocksDistance:(RVBlocks *)prevBlock;
++(int)getSmallBlocksDistance:(RVBlocks *)prevBlock;
++(int)getBigBlocksDistance:(RVBlocks *)prevBlock;
 @end

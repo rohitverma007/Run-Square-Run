@@ -37,8 +37,27 @@ static const uint32_t bigBlockCat = 8;
     return self;
 }
 
--(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action :(CGSize)sSize{
-    [self setPosition:CGPointMake(positionAdd+self.size.width/2, sSize.height/2+self.size.height/2)];
+-(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action :(CGSize)sSize :(bool)setMultipleLayer :(RVBlocks *)lastObject :(int)newLayerY{
+    
+    int xPos = positionAdd+self.size.width/2;
+    int yPos = sSize.height/2+self.size.height/2;
+    
+    if(setMultipleLayer){
+        yPos = newLayerY+20;
+        xPos = lastObject.position.x-20;
+    }
+    
+    
+//    if(setMultipleLayer && !newLine){
+//        yPos = lastObject.position.y+5+self.size.height/2+5;
+//        xPos = lastObject.position.x;
+//        newLine = true;
+//    } else if(setMultipleLayer){
+//        yPos = lastObject.position.y;
+//        newLine = false;
+//    }
+    
+    [self setPosition:CGPointMake(xPos, yPos)];
     [self runAction:action];
     return self;
 }

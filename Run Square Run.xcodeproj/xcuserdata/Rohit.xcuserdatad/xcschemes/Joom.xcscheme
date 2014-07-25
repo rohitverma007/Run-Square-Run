@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F91760AA197A2AAD0031CF06"
-               BuildableName = "Joom.app"
+               BuildableName = "Run Square Run.app"
                BlueprintName = "Run Square Run"
                ReferencedContainer = "container:Run Square Run.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F91760D2197A2AAD0031CF06"
-               BuildableName = "JoomTests.xctest"
+               BuildableName = "Run Square RunTests.xctest"
                BlueprintName = "Run Square RunTests"
                ReferencedContainer = "container:Run Square Run.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F91760AA197A2AAD0031CF06"
-            BuildableName = "Joom.app"
+            BuildableName = "Run Square Run.app"
             BlueprintName = "Run Square Run"
             ReferencedContainer = "container:Run Square Run.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F91760AA197A2AAD0031CF06"
-            BuildableName = "Joom.app"
+            BuildableName = "Run Square Run.app"
             BlueprintName = "Run Square Run"
             ReferencedContainer = "container:Run Square Run.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F91760AA197A2AAD0031CF06"
-            BuildableName = "Joom.app"
+            BuildableName = "Run Square Run.app"
             BlueprintName = "Run Square Run"
             ReferencedContainer = "container:Run Square Run.xcodeproj">
          </BuildableReference>

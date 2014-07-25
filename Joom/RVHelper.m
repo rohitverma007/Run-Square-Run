@@ -46,8 +46,14 @@
     return prevPlatform.position.x+prevPlatform.size.width/2+[self generateRandNumber:4 :prevPlatform.size];
 }
 
-+(int)getBlocksDistance:(RVBlocks *)prevBlock{
-    return prevBlock.position.x+prevBlock.size.width/2+50;
++(int)getSmallBlocksDistance:(RVBlocks *)prevBlock{
+    return prevBlock.position.x+prevBlock.size.width/2+5;
 
 }
+
++(int)getBigBlocksDistance:(RVBlocks *)prevBlock{
+    return prevBlock.position.x+prevBlock.size.width/2+200;
+    
+}
+
 @end
