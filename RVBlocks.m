@@ -25,11 +25,11 @@ static const uint32_t bigBlockCat = 8;
     } else {
         category = bigBlockCat;
         blockColor = [SKColor redColor];
-        blockSize = CGSizeMake(30, 30);
+        blockSize = CGSizeMake(20, 10);
     }
     
-    self = [RVBlocks spriteNodeWithColor:[SKColor greenColor] size:blockSize];
-    self.position = CGPointMake([RVHelper generateRandNumber:2 :size], size.height/2+self.size.height/2); //Todo fix x position
+    self = [RVBlocks spriteNodeWithColor:blockColor size:blockSize];
+    self.position = CGPointMake(self.size.width/2+10+size.width, size.height/2+self.size.height/2); //Todo fix x position
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.dynamic = NO;
     self.physicsBody.categoryBitMask = category;

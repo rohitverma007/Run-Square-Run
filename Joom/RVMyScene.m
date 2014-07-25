@@ -125,20 +125,38 @@ bool addedSmallBlocks = false;
         
 //        smallBlockObj = [[RVBlocks alloc]init:size :true];
         [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:300 :[self getAction] :self.size]];
+        [self addChild:smallBlocksArray.lastObject];
+
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [self addChild:smallBlocksArray.lastObject];
+
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [self addChild:smallBlocksArray.lastObject];
+
         
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [self addChild:smallBlocksArray.lastObject];
+
+//        for(int i = 0; i < [smallBlocksArray count]; i++){
+//            [self addChild:smallBlocksArray[i]];
+//        }
         
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500 :[self getAction] :self.size]];
+        [self addChild:bigBlocksArray.lastObject];
+
+        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [self addChild:bigBlocksArray.lastObject];
+
+        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [self addChild:bigBlocksArray.lastObject];
+
         
-        
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
-        
-        for(int i = 0; i < [smallBlocksArray count]; i++){
-            [self addChild:smallBlocksArray[i]];
-        }
-        
-        
-        
+        [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+        [self addChild:bigBlocksArray.lastObject];
+
+//        for(int i = 0; i < [bigBlocksArray count]; i++){
+//            [self addChild:bigBlocksArray[i]];
+//        }
         
         
         
@@ -164,43 +182,33 @@ bool addedSmallBlocks = false;
 }
 
 -(void)generateSmallBlocks:(CGSize)size{
-    float oldSmallBlockSize = 0;
-    for(int i = 0; i < 5; i++){
-
-        smallBlock = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor] size:CGSizeMake(10, 10)];
-        smallBlock.position = CGPointMake([RVHelper generateRandNumber:rSPACE :size], size.height/2+smallBlock.size.height/2);
-        smallBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:smallBlock.size];
-        smallBlock.physicsBody.dynamic = NO;
-        smallBlock.physicsBody.categoryBitMask = smallBlockCat;
-        oldSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
-        if(i == 4){
-            smallBlock.name = @"lastSmallBlock";
-            smallBlock.color = [SKColor blackColor];
-            lastSmallBlockSize = smallBlock.position.x+smallBlock.size.width;
-        }
-        [smallBlock runAction:forever];
-        [self addChild:smallBlock];
-    }
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:400 :[self getAction] :self.size]];
+    [self addChild:smallBlocksArray.lastObject];
+    
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [self addChild:smallBlocksArray.lastObject];
+    
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [self addChild:smallBlocksArray.lastObject];
+    
+    
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [self addChild:smallBlocksArray.lastObject];
 }
 
 -(void)generateBigBlocks:(CGSize)size{
-    float oldBigBlockSize = 0;
-    for(int i = 0; i < 5; i++){
-        
-        bigBlock = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10, 20)];
-        bigBlock.position = CGPointMake([RVHelper generateRandNumber:rSPACE :size], size.height/2+bigBlock.size.height/2);
-        bigBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bigBlock.size];
-        bigBlock.physicsBody.dynamic = NO;
-        bigBlock.physicsBody.categoryBitMask = bigBlockCat;
-        oldBigBlockSize = bigBlock.position.x+bigBlock.size.width;
-
-        if(i == 4){
-            bigBlock.name = @"lastBigBlock";
-            bigBlock.color = [SKColor blackColor];
-        }
-        [bigBlock runAction:forever];
-        [self addChild:bigBlock];
-    }
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500  :[self getAction] :self.size]];
+    [self addChild:bigBlocksArray.lastObject];
+    
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [self addChild:bigBlocksArray.lastObject];
+    
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [self addChild:bigBlocksArray.lastObject];
+    
+    
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size]];
+    [self addChild:bigBlocksArray.lastObject];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -285,20 +293,36 @@ bool addedSmallBlocks = false;
     
     
     CGPoint lastObject = [platformsArray.lastObject position];
-//    CGPoint lastBigBlockPosition = [[self childNodeWithName:@"lastBigBlock"]position];
+    CGPoint lastBigBlockPosition = [bigBlocksArray.lastObject position];
 
-//    if(!addedBigBlocks){
-//        if(lastBigBlockPosition.x < 50){
-//            addedBigBlocks = true;
-//            [self generateBigBlocks:self.size];
-//        }
-//    }
+    if(!addedBigBlocks){
+        if(lastBigBlockPosition.x < self.size.width/2){
+            addedBigBlocks = true;
+            [self generateBigBlocks:self.size];
+        }
+    }
     
-//    if(addedBigBlocks){
-//        if(lastBigBlockPosition.x < 50){
-//            addedBigBlocks = false;
-//        }
-//    }
+    if(addedBigBlocks){
+        if(lastBigBlockPosition.x < self.size.width/2){
+            addedBigBlocks = false;
+        }
+    }
+    
+    CGPoint lastSmallBlockPosition = [smallBlocksArray.lastObject position];
+    
+    if(!addedSmallBlocks){
+        if(lastSmallBlockPosition.x < self.size.width/2){
+            addedSmallBlocks = true;
+            [self generateSmallBlocks:self.size];
+        }
+    }
+    
+    if(addedSmallBlocks){
+        if(lastSmallBlockPosition.x < self.size.width/2){
+            addedSmallBlocks = false;
+        }
+    }
+    
     
     if(!addedPlatform){
         if(lastObject.x < self.size.width){

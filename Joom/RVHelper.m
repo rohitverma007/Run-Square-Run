@@ -45,4 +45,9 @@
 
     return prevPlatform.position.x+prevPlatform.size.width/2+[self generateRandNumber:4 :prevPlatform.size];
 }
+
++(int)getBlocksDistance:(RVBlocks *)prevBlock{
+    return prevBlock.position.x+prevBlock.size.width/2+50;
+
+}
 @end
