@@ -29,6 +29,7 @@
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
+#import "RVBlocks.h"
 
 //MOve these to rvhelper maybe?
 static const uint32_t ballCat = 1;
@@ -37,6 +38,8 @@ static const uint32_t smallBlockCat = 4;
 static const uint32_t bigBlockCat = 8;
 @implementation RVMyScene
 NSMutableArray *platformsArray;
+NSMutableArray *smallBlocksArray;
+NSMutableArray *bigBlocksArray;
 SKSpriteNode *ball;
 //SKSpriteNode *platform;
 BOOL touchingGround = NO;
@@ -45,6 +48,8 @@ RVPlatform *platform1;
 SKSpriteNode *smallBlock;
 SKSpriteNode *bigBlock;
 RVPlatform *platform2;
+RVBlocks *smallBlockObj;
+RVBlocks *bigBlockObj;
 SKLabelNode *score;
 SKAction *forever;
 BOOL addedPlatform = NO;
@@ -111,8 +116,38 @@ bool addedSmallBlocks = false;
         ball.physicsBody.allowsRotation = NO;
         
         //TODO Maybe move these two functions to a class for reuse in other scenes?
-        [self generateSmallBlocks:size];
-        [self generateBigBlocks:size];
+//        [self generateSmallBlocks:size];
+//        [self generateBigBlocks:size];
+        
+        
+        smallBlocksArray = [NSMutableArray array];
+        bigBlocksArray = [NSMutableArray array];
+        
+//        smallBlockObj = [[RVBlocks alloc]init:size :true];
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:300 :[self getAction] :self.size]];
+        
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        
+        
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size]];
+        
+        for(int i = 0; i < [smallBlocksArray count]; i++){
+            [self addChild:smallBlocksArray[i]];
+        }
+        
+        
+        
+        
+        
+        
+        
+//        bigBlockObj = [[RVBlocks alloc]init:size :false];
+        
+        
+        
+        
         
         
         //Helper function maybe?
