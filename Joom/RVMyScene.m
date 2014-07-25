@@ -26,6 +26,13 @@
 //TODO Automate first platform
 //TODO Figure out how to set action properly... currently thinking of implementing delegates?
 // Currently resetting action... should only modify it temporarily? maybe use callbacks???
+
+
+//TODO Get proper spacing/position for big blocks and small blocks, maybe always generate small blocks in
+// packages and big blocks randomly and individually
+
+//TODO MEMORY CLEANUP !!!!
+
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
