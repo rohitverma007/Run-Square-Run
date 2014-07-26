@@ -39,6 +39,9 @@
 //TODO Seprate methods for setnewposition depending on small block vs big block
 
 //TODO Render blocks much earlier, right now its too abrupt
+
+
+//TODO Attach big blocks to platforms, make it child node of platforms, new class? No action, attached to platform
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -153,19 +156,25 @@ int newLayerY;
 
 -(void)generateSmallBlocks:(CGSize)size :(int)count{
     
-    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:400 :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject :(int)newLayerY]];
+
+
+    
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:self.size.width+10 :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject :(int)newLayerY]];
     [self addChild:smallBlocksArray.lastObject];
     
     for(int i = 1; i < count; i++){
+        RVBlocks *abcd = smallBlocksArray.lastObject;
+
         if(i > 3){
             setMultipleLayer = true;
         }
         
         if(i == 4){
             CGPoint last = [smallBlocksArray.lastObject position] ;
+                abcd.position = CGPointMake(abcd.position.x, abcd.position.y);
             newLayerY = last.y;
         }
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getSmallBlocksDistance:smallBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject  :(int)newLayerY]];
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getSmallBlocksDistance:abcd]) :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject  :(int)newLayerY]];
         
         [self addChild:smallBlocksArray.lastObject];
         
@@ -258,6 +267,17 @@ int newLayerY;
   
     [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
     [self addChild:platformsArray.lastObject];
+    
+    CGSize lol = [platformsArray.lastObject size];
+    
+    SKSpriteNode *testBlock = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(30, 30)];
+    testBlock.position = CGPointMake(0, lol.height/2+testBlock.size.height/2);
+    testBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
+    testBlock.physicsBody.dynamic = NO;
+
+    
+    [platformsArray.lastObject addChild:testBlock];
+    
     [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
     [self addChild:platformsArray.lastObject];
     
