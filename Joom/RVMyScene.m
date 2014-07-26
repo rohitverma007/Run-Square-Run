@@ -42,6 +42,8 @@
 
 
 //TODO Attach big blocks to platforms, make it child node of platforms, new class? No action, attached to platform
+
+//TODO Fix regenerating of red blocks, DONE: quickfix for generating big blocks on platforms
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -159,7 +161,7 @@ int newLayerY;
 
 
     
-    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:self.size.width+10 :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject :(int)newLayerY]];
+    [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:self.size.width+10 :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject :(int)newLayerY :true]];
     [self addChild:smallBlocksArray.lastObject];
     
     for(int i = 1; i < count; i++){
@@ -174,7 +176,7 @@ int newLayerY;
                 abcd.position = CGPointMake(abcd.position.x, abcd.position.y);
             newLayerY = last.y;
         }
-        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getSmallBlocksDistance:abcd]) :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject  :(int)newLayerY]];
+        [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getSmallBlocksDistance:abcd]) :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject  :(int)newLayerY :true]];
         
         [self addChild:smallBlocksArray.lastObject];
         
@@ -185,18 +187,18 @@ int newLayerY;
 }
 
 -(void)generateBigBlocks:(CGSize)size{
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500  :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject :(int)newLayerY]];
-    [self addChild:bigBlocksArray.lastObject];
-    
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject  :(int)newLayerY]];
-    [self addChild:bigBlocksArray.lastObject];
-    
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject  :(int)newLayerY]];
-    [self addChild:bigBlocksArray.lastObject];
-    
-    
-    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :bigBlocksArray.lastObject  :(int)newLayerY]];
-    [self addChild:bigBlocksArray.lastObject];
+    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500  :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject :(int)newLayerY :false]];
+    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
+//    
+//    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject  :(int)newLayerY]];
+//    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
+//    
+//    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject  :(int)newLayerY]];
+//    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
+//    
+//    
+//    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject  :(int)newLayerY]];
+//    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -268,16 +270,6 @@ int newLayerY;
     [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
     [self addChild:platformsArray.lastObject];
     
-    CGSize lol = [platformsArray.lastObject size];
-    
-    SKSpriteNode *testBlock = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(30, 30)];
-    testBlock.position = CGPointMake(0, lol.height/2+testBlock.size.height/2);
-    testBlock.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(0, 0)];
-    testBlock.physicsBody.dynamic = NO;
-
-    
-    [platformsArray.lastObject addChild:testBlock];
-    
     [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
     [self addChild:platformsArray.lastObject];
     
@@ -292,7 +284,7 @@ int newLayerY;
     
     
     CGPoint lastObject = [platformsArray.lastObject position];
-    CGPoint lastBigBlockPosition = [bigBlocksArray.lastObject position];
+    CGPoint lastBigBlockPosition = [[bigBlocksArray.lastObject parent] position];
 
     if(!addedBigBlocks){
         if(lastBigBlockPosition.x < self.size.width/2){

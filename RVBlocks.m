@@ -18,11 +18,14 @@ static const uint32_t bigBlockCat = 8;
     uint32_t category = 0;
     SKColor *blockColor;
     
+
     if(isSmall){
+        self.isSmall = true;
         category = smallBlockCat;
         blockColor = [SKColor greenColor];
         blockSize = CGSizeMake(15, 15);
     } else {
+        self.isSmall = false;
         category = bigBlockCat;
         blockColor = [SKColor redColor];
         blockSize = CGSizeMake(20, 10);
@@ -37,17 +40,26 @@ static const uint32_t bigBlockCat = 8;
     return self;
 }
 
--(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action :(CGSize)sSize :(bool)setMultipleLayer :(RVBlocks *)lastObject :(int)newLayerY{
+-(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action :(CGSize)sSize :(bool)setMultipleLayer :(RVBlocks *)lastObject :(int)newLayerY :(bool)isSmall{ //temporary is small being passed in... should be set in initi
     
-    int xPos = positionAdd+self.size.width/2;
-    int yPos = sSize.height/2+self.size.height/2;
+    int xPos;
+    int yPos;
+    NSLog(@"%d", isSmall);
+    if(!isSmall){
+        xPos = 0;
+        yPos = lastObject.size.height/2+self.size.height/2;
+    } else {
+        xPos = positionAdd+self.size.width/2;
+        yPos = sSize.height/2+self.size.height/2;
+    }
+    
     
     if(setMultipleLayer){
         yPos = newLayerY+20;
         xPos = lastObject.position.x-20;
     }
     
-    
+
 //    if(setMultipleLayer && !newLine){
 //        yPos = lastObject.position.y+5+self.size.height/2+5;
 //        xPos = lastObject.position.x;
@@ -58,7 +70,9 @@ static const uint32_t bigBlockCat = 8;
 //    }
     
     [self setPosition:CGPointMake(xPos, yPos)];
+    if(isSmall){
     [self runAction:action];
+    }
     return self;
 }
 
