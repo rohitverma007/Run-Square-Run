@@ -29,6 +29,8 @@
 		F93137941980B3DD00DE2FD9 /* RVBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = F93137931980B3DD00DE2FD9 /* RVBlocks.m */; };
 		F9F06F46198596B100EBB5CD /* RVGameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F06F45198596B100EBB5CD /* RVGameOver.m */; };
 		F9F06F4C1985AB8A00EBB5CD /* RVMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F06F4B1985AB8A00EBB5CD /* RVMainMenu.m */; };
+		F9F06F4F1985B29C00EBB5CD /* Pickup_Coin16.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9F06F4D1985B29C00EBB5CD /* Pickup_Coin16.wav */; };
+		F9F06F501985B29C00EBB5CD /* Hit_Hurt14.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9F06F4E1985B29C00EBB5CD /* Hit_Hurt14.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		F9F06F45198596B100EBB5CD /* RVGameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVGameOver.m; path = ../RVGameOver.m; sourceTree = "<group>"; };
 		F9F06F4A1985AB8A00EBB5CD /* RVMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVMainMenu.h; sourceTree = "<group>"; };
 		F9F06F4B1985AB8A00EBB5CD /* RVMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVMainMenu.m; sourceTree = "<group>"; };
+		F9F06F4D1985B29C00EBB5CD /* Pickup_Coin16.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Pickup_Coin16.wav; path = ../Pickup_Coin16.wav; sourceTree = "<group>"; };
+		F9F06F4E1985B29C00EBB5CD /* Hit_Hurt14.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Hit_Hurt14.wav; path = ../Hit_Hurt14.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 				F91760C2197A2AAD0031CF06 /* Main.storyboard */,
 				F91760C5197A2AAD0031CF06 /* RVViewController.h */,
 				F91760C6197A2AAD0031CF06 /* RVViewController.m */,
+				F9F06F4D1985B29C00EBB5CD /* Pickup_Coin16.wav */,
+				F9F06F4E1985B29C00EBB5CD /* Hit_Hurt14.wav */,
 				F91760C8197A2AAD0031CF06 /* RVMyScene.h */,
 				F91760C9197A2AAD0031CF06 /* RVMyScene.m */,
 				F91760CB197A2AAD0031CF06 /* Spaceship.png */,
@@ -275,8 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F91760BB197A2AAD0031CF06 /* InfoPlist.strings in Resources */,
+				F9F06F4F1985B29C00EBB5CD /* Pickup_Coin16.wav in Resources */,
 				F91760CE197A2AAD0031CF06 /* Images.xcassets in Resources */,
 				F91760CC197A2AAD0031CF06 /* Spaceship.png in Resources */,
+				F9F06F501985B29C00EBB5CD /* Hit_Hurt14.wav in Resources */,
 				F91760C4197A2AAD0031CF06 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

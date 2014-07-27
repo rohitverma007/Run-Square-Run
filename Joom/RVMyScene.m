@@ -241,6 +241,7 @@ NSUserDefaults *defaults;
     
     
     if(notBall.categoryBitMask == smallBlockCat){
+        [self runAction:[SKAction playSoundFileNamed:@"Pickup_Coin16.wav" waitForCompletion:false]];
         [notBall.node removeFromParent];
         totalScore++;
         score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
@@ -259,9 +260,7 @@ NSUserDefaults *defaults;
     //For now scale down? oo maybe scale down to original and then if one more touched, then die,
     // maybe in diferent mode , die by touching one?
     if(notBall.categoryBitMask == bigBlockCat){
-        [notBall.node removeFromParent];
 
-        score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
         //Scaling yes or no?
         //        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
         //        [ball runAction:scaleBy];
@@ -270,22 +269,35 @@ NSUserDefaults *defaults;
         //            ball.physicsBody.velocity = CGVectorMake(0, 0);
         //        }
         
-        if(totalScore > [defaults integerForKey:@"score"]){
-            [defaults setInteger:(int)totalScore forKey:@"highScore"];
-        }
         
-        defaults = [NSUserDefaults standardUserDefaults];
+        void (^callBack)(void) = ^(void){
+            [notBall.node removeFromParent];
+            
+            score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+            if(totalScore > [defaults integerForKey:@"score"]){
+                [defaults setInteger:(int)totalScore forKey:@"highScore"];
+            }
+            
+            defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setInteger:(int)totalScore forKey:@"score"];
+            
+            
+            SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
+            RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
+            [self.scene.view presentScene: newScene transition:reveal];
+            
+            if([notBall.node.name isEqualToString:@"lastBigBlock"]){
+                [self generateBigBlocks:self.frame.size];
+            }
+
+        };
         
-        [defaults setInteger:(int)totalScore forKey:@"score"];
         
         
-        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
-        RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
-        [self.scene.view presentScene: newScene transition:reveal];
-        
-        if([notBall.node.name isEqualToString:@"lastBigBlock"]){
-            [self generateBigBlocks:self.frame.size];
-        }
+        [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:true] completion:callBack];
+
+
     }
     
     
@@ -294,10 +306,16 @@ NSUserDefaults *defaults;
     }
     
     if(notBall.categoryBitMask == edgeCat){
-        NSLog(@"CHANGEEDDEDEDE");
-        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
-        RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
-        [self.scene.view presentScene: newScene transition:reveal];
+        void (^newCallback)(void) = ^(void){
+            
+            NSLog(@"CHANGEEDDEDEDE");
+            SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+            RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
+            [self.scene.view presentScene: newScene transition:reveal];
+        };
+        
+        [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:true] completion:newCallback];
+
     }
     
 }
