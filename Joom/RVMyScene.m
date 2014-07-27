@@ -48,12 +48,15 @@
 #import "RVPlatform.h"
 #import "RVHelper.h"
 #import "RVBlocks.h"
+#import "RVGameOver.h"
 
 //MOve these to rvhelper maybe?
 static const uint32_t ballCat = 1;
 static const uint32_t platformCat = 2;
 static const uint32_t smallBlockCat = 4;
 static const uint32_t bigBlockCat = 8;
+static const uint32_t edgeCat = 16;
+
 @implementation RVMyScene
 NSMutableArray *platformsArray;
 NSMutableArray *smallBlocksArray;
@@ -85,6 +88,7 @@ bool addedBigBlocks = false;
 bool addedSmallBlocks = false;
 bool setMultipleLayer = false;
 int newLayerY;
+NSUserDefaults *defaults;
 
 -(SKAction*)getAction{
     return forever;
@@ -105,7 +109,19 @@ int newLayerY;
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor blueColor];
         self.physicsWorld.contactDelegate = self;
+        totalScore = 0;
         
+        SKSpriteNode *edges = [[SKSpriteNode alloc] init];
+        edges.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(1, 0) toPoint:CGPointMake(size.width, 0)];
+        edges.physicsBody.categoryBitMask = edgeCat;
+        
+        SKSpriteNode *edgesSide = [[SKSpriteNode alloc] init];
+        edgesSide.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0, 1) toPoint:CGPointMake(0, size.height)];
+        edgesSide.physicsBody.categoryBitMask = edgeCat;
+        
+        
+        [self addChild:edges];
+        [self addChild:edgesSide];
         platformsArray = [NSMutableArray array];
 
         platform = [[RVPlatform alloc ]init:size];
@@ -131,7 +147,7 @@ int newLayerY;
         ball.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ball.size];
         ball.physicsBody.friction = 0;
         ball.physicsBody.categoryBitMask = ballCat;
-        ball.physicsBody.contactTestBitMask = smallBlockCat | platformCat | bigBlockCat;
+        ball.physicsBody.contactTestBitMask = smallBlockCat | platformCat | bigBlockCat | edgeCat;
         ball.physicsBody.collisionBitMask = platformCat;
         ball.physicsBody.allowsRotation = NO;
         
@@ -244,7 +260,7 @@ int newLayerY;
     // maybe in diferent mode , die by touching one?
     if(notBall.categoryBitMask == bigBlockCat){
         [notBall.node removeFromParent];
-        totalScore--;
+
         score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
         //Scaling yes or no?
         //        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
@@ -253,6 +269,20 @@ int newLayerY;
         //        if(touched > 0){ //Put this if statement in the correct place!
         //            ball.physicsBody.velocity = CGVectorMake(0, 0);
         //        }
+        
+        if(totalScore > [defaults integerForKey:@"score"]){
+            [defaults setInteger:(int)totalScore forKey:@"highScore"];
+        }
+        
+        defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setInteger:(int)totalScore forKey:@"score"];
+        
+        
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
+        RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
+        [self.scene.view presentScene: newScene transition:reveal];
+        
         if([notBall.node.name isEqualToString:@"lastBigBlock"]){
             [self generateBigBlocks:self.frame.size];
         }
@@ -261,6 +291,13 @@ int newLayerY;
     
     if(notBall.categoryBitMask == platformCat){
         onAir = false;
+    }
+    
+    if(notBall.categoryBitMask == edgeCat){
+        NSLog(@"CHANGEEDDEDEDE");
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+        RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
+        [self.scene.view presentScene: newScene transition:reveal];
     }
     
 }

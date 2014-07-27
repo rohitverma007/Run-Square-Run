@@ -7,7 +7,7 @@
 //
 
 #import "RVViewController.h"
-#import "RVMyScene.h"
+#import "RVMainMenu.h"
 
 @implementation RVViewController
 
@@ -19,7 +19,7 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [RVMyScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [RVMainMenu sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
