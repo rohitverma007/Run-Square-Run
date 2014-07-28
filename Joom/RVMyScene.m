@@ -119,9 +119,13 @@ NSUserDefaults *defaults;
         edgesSide.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0, 1) toPoint:CGPointMake(0, size.height)];
         edgesSide.physicsBody.categoryBitMask = edgeCat;
         
+//        SKSpriteNode *edgesRightSide = [[SKSpriteNode alloc] init];
+//        edgesRightSide.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(size.width-10, 0) toPoint:CGPointMake(size.width-10,size.height)];
+//        edgesSide.physicsBody.categoryBitMask = 32;
         
         [self addChild:edges];
         [self addChild:edgesSide];
+//        [self addChild:edgesRightSide];
         platformsArray = [NSMutableArray array];
 
         platform = [[RVPlatform alloc ]init:size];
@@ -147,7 +151,7 @@ NSUserDefaults *defaults;
         ball.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ball.size];
         ball.physicsBody.friction = 0;
         ball.physicsBody.categoryBitMask = ballCat;
-        ball.physicsBody.contactTestBitMask = smallBlockCat | platformCat | bigBlockCat | edgeCat;
+        ball.physicsBody.contactTestBitMask = smallBlockCat | platformCat | bigBlockCat | edgeCat | 32;
         ball.physicsBody.collisionBitMask = platformCat;
         ball.physicsBody.allowsRotation = NO;
         
@@ -274,14 +278,23 @@ NSUserDefaults *defaults;
             [notBall.node removeFromParent];
             
             score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
-            if(totalScore > [defaults integerForKey:@"score"]){
+            defaults = [NSUserDefaults standardUserDefaults];
+            
+            
+            if([defaults objectForKey:@"highScore"] == nil){
+                
+                [defaults setInteger:0 forKey:@"highScore"];
+                
+            }
+            
+            if(totalScore > [defaults integerForKey:@"highScore"]){
                 [defaults setInteger:(int)totalScore forKey:@"highScore"];
             }
             
-            defaults = [NSUserDefaults standardUserDefaults];
             
             [defaults setInteger:(int)totalScore forKey:@"score"];
             
+
             
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
@@ -297,7 +310,6 @@ NSUserDefaults *defaults;
         
         [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:true] completion:callBack];
 
-
     }
     
     
@@ -308,6 +320,26 @@ NSUserDefaults *defaults;
     if(notBall.categoryBitMask == edgeCat){
         void (^newCallback)(void) = ^(void){
             
+            
+            
+            score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+            defaults = [NSUserDefaults standardUserDefaults];
+
+            
+            if([defaults objectForKey:@"highScore"] == nil){
+                
+                [defaults setInteger:0 forKey:@"highScore"];
+                
+            }
+            
+            if(totalScore > [defaults integerForKey:@"highScore"]){
+                [defaults setInteger:(int)totalScore forKey:@"highScore"];
+            }
+            
+            
+            [defaults setInteger:(int)totalScore forKey:@"score"];
+            
+            
             NSLog(@"CHANGEEDDEDEDE");
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
@@ -317,7 +349,6 @@ NSUserDefaults *defaults;
         [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:true] completion:newCallback];
 
     }
-    
 }
 
 -(void)generatePlatforms{
@@ -333,10 +364,6 @@ NSUserDefaults *defaults;
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    
-    //TODO Clean up memory! platformsArray!
-    NSLog(@"%lu", (unsigned long)platformsArray.count);
-    
     
     CGPoint lastObject = [platformsArray.lastObject position];
     CGPoint lastBigBlockPosition = [[bigBlocksArray.lastObject parent] position];
