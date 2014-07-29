@@ -46,7 +46,8 @@
 //TODO Fix regenerating of red blocks, DONE: quickfix for generating big blocks on platforms
 
 //TODO Preload sounds, number of blocks increase as we go up! NICE SPEEEDIN up.. maybe tweak it a bit?
-//TODO fix repeated block generatingg??@?@?
+//TODO fix repeated block generatingg??@?@? - FIXED
+//TODO fix red generating on green
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -168,7 +169,7 @@ int speedLevel = 0;
         smallBlocksArray = [NSMutableArray array];
         bigBlocksArray = [NSMutableArray array];
         
-        [self generateSmallBlocks:size :numberOfBlocks];
+        [self generateSmallBlocks:size :arc4random_uniform(numberOfBlocks)];
         [self generateBigBlocks:size];
     
         //Helper function maybe?
@@ -271,7 +272,7 @@ int speedLevel = 0;
         //            ball.physicsBody.velocity = CGVectorMake(0, 0);
         //        }
         if([notBall.node.name isEqualToString:@"lastSmallBlock"]){
-            [self generateSmallBlocks:self.frame.size :numberOfBlocks];
+            [self generateSmallBlocks:self.frame.size :arc4random_uniform(numberOfBlocks)];
         }
     }
     
@@ -398,7 +399,7 @@ int speedLevel = 0;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
         NSLog(@"hi %d", totalScore);
-        numberOfBlocks += 2;
+        numberOfBlocks += 3;
         [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 2.5] :true];
         
     }
@@ -415,7 +416,7 @@ int speedLevel = 0;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
         NSLog(@"hi %d", totalScore);
-        numberOfBlocks += 1;
+        numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
     }
     
@@ -436,7 +437,7 @@ int speedLevel = 0;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
         NSLog(@"hi %d", totalScore);
-        numberOfBlocks += 1;
+        numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
     }
     
@@ -444,6 +445,8 @@ int speedLevel = 0;
         speedLevel = 5;
         health++;
         NSLog(@"hi %d", totalScore);
+        numberOfBlocks += 1;
+
         [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];
     }
     
@@ -465,7 +468,7 @@ int speedLevel = 0;
     if(!addedSmallBlocks){
         if(lastSmallBlockPosition.x < self.size.width/2){
             addedSmallBlocks = true;
-            [self generateSmallBlocks:self.size :numberOfBlocks]; //TODO determine if needed in both here and touching blocks!
+            [self generateSmallBlocks:self.size :arc4random_uniform(numberOfBlocks)]; //TODO determine if needed in both here and touching blocks!
         }
     }
     
