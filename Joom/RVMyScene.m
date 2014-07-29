@@ -175,12 +175,12 @@ int speedLevel = 0;
         score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
         score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
-        score.position = CGPointMake(size.width/2, size.height-40);
+        score.position = CGPointMake(size.width/2+150, size.height-40);
         [self addChild:score];
         
         healthNumber = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         healthNumber.fontSize = 20;
-        healthNumber.text = [NSString stringWithFormat:@"Score: %d", health];
+        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
         healthNumber.position = CGPointMake(150, size.height-40);
         [self addChild:healthNumber];
         
