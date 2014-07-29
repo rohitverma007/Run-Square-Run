@@ -95,8 +95,8 @@ bool setMultipleLayer = false;
 int newLayerY;
 NSUserDefaults *defaults;
 int numberOfBlocks;
-int health = 3;
-int speedLevel = 0;
+int health;
+int speedLevel;
 
 -(SKAction*)getAction{
     return forever;
@@ -119,6 +119,8 @@ int speedLevel = 0;
         self.physicsWorld.contactDelegate = self;
         totalScore = 0;
         numberOfBlocks = 5;
+        health = 3;
+        speedLevel = 0;
         
         SKSpriteNode *edges = [[SKSpriteNode alloc] init];
         edges.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(1, 0) toPoint:CGPointMake(size.width, 0)];
@@ -393,7 +395,7 @@ int speedLevel = 0;
     
     NSLog(@"iih %d %d", speedLevel, xPos);
     
-    if(totalScore > 15 && lastObject.x < self.size.width && speedLevel == 0){
+    if(totalScore > 15 && speedLevel == 0){
         speedLevel = 1;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
@@ -410,7 +412,7 @@ int speedLevel = 0;
 //        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
 //    }
     
-    if(totalScore > 50 && lastObject.x < self.size.width && speedLevel == 1){
+    if(totalScore > 50 && speedLevel == 1){
         speedLevel = 2;
         health += 2;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
@@ -420,7 +422,7 @@ int speedLevel = 0;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
     }
     
-    if(totalScore > 100 && lastObject.x < self.size.width && speedLevel == 2){
+    if(totalScore > 100 && speedLevel == 2){
         speedLevel = 3;
         health += 3;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
@@ -431,7 +433,7 @@ int speedLevel = 0;
     }
     
     
-    if(totalScore > 150 && lastObject.x < self.size.width && speedLevel == 3){
+    if(totalScore > 150 && speedLevel == 3){
         speedLevel = 4;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
@@ -441,7 +443,7 @@ int speedLevel = 0;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
     }
     
-    if(totalScore > 200 && lastObject.x < self.size.width && speedLevel == 4){
+    if(totalScore > 200 && speedLevel == 4){
         speedLevel = 5;
         health++;
         NSLog(@"hi %d", totalScore);
