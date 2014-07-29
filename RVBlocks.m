@@ -44,7 +44,6 @@ static const uint32_t bigBlockCat = 8;
     
     int xPos;
     int yPos;
-    NSLog(@"%d", isSmall);
     if(!isSmall){
         xPos = 0;
         yPos = lastObject.size.height/2+self.size.height/2;

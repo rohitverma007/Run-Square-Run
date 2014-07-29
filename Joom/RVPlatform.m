@@ -16,7 +16,6 @@ static const uint32_t platformCat = 2;
 
 -(id)init:(CGSize)size{
     int rWIDTH = 1;
-    NSLog(@"%f, %d, %d LOOOl", size.width, self.prevPositionX, _prevPositionX);
 
 
     self = [RVPlatform spriteNodeWithColor:[SKColor blackColor] size:CGSizeMake([RVHelper generateRandNumber:rWIDTH :size], size.height/2)];

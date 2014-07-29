@@ -44,6 +44,9 @@
 //TODO Attach big blocks to platforms, make it child node of platforms, new class? No action, attached to platform
 
 //TODO Fix regenerating of red blocks, DONE: quickfix for generating big blocks on platforms
+
+//TODO Preload sounds, number of blocks increase as we go up! NICE SPEEEDIN up.. maybe tweak it a bit?
+//TODO fix repeated block generatingg??@?@?
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -89,6 +92,9 @@ bool addedSmallBlocks = false;
 bool setMultipleLayer = false;
 int newLayerY;
 NSUserDefaults *defaults;
+int numberOfBlocks;
+int health = 3;
+int speedLevel = 0;
 
 -(SKAction*)getAction{
     return forever;
@@ -110,6 +116,7 @@ NSUserDefaults *defaults;
         self.backgroundColor = [SKColor blueColor];
         self.physicsWorld.contactDelegate = self;
         totalScore = 0;
+        numberOfBlocks = 5;
         
         SKSpriteNode *edges = [[SKSpriteNode alloc] init];
         edges.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(1, 0) toPoint:CGPointMake(size.width, 0)];
@@ -160,7 +167,7 @@ NSUserDefaults *defaults;
         smallBlocksArray = [NSMutableArray array];
         bigBlocksArray = [NSMutableArray array];
         
-        [self generateSmallBlocks:size :arc4random_uniform(10)];
+        [self generateSmallBlocks:size :numberOfBlocks];
         [self generateBigBlocks:size];
     
         //Helper function maybe?
@@ -257,14 +264,14 @@ NSUserDefaults *defaults;
         //            ball.physicsBody.velocity = CGVectorMake(0, 0);
         //        }
         if([notBall.node.name isEqualToString:@"lastSmallBlock"]){
-            [self generateSmallBlocks:self.frame.size :(int)arc4random_uniform(10)];
+            [self generateSmallBlocks:self.frame.size :numberOfBlocks];
         }
     }
     
     //For now scale down? oo maybe scale down to original and then if one more touched, then die,
     // maybe in diferent mode , die by touching one?
     if(notBall.categoryBitMask == bigBlockCat){
-
+        health--;
         //Scaling yes or no?
         //        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
         //        [ball runAction:scaleBy];
@@ -278,6 +285,7 @@ NSUserDefaults *defaults;
             [notBall.node removeFromParent];
             
             score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+            if(health == 0){
             defaults = [NSUserDefaults standardUserDefaults];
             
             
@@ -300,8 +308,9 @@ NSUserDefaults *defaults;
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
             [self.scene.view presentScene: newScene transition:reveal];
             
-            if([notBall.node.name isEqualToString:@"lastBigBlock"]){
+            if([notBall.node.name isEqualToString:@"lastBigBlock"]){ //TODO what ? is this needed?
                 [self generateBigBlocks:self.frame.size];
+            }
             }
 
         };
@@ -340,7 +349,6 @@ NSUserDefaults *defaults;
             [defaults setInteger:(int)totalScore forKey:@"score"];
             
             
-            NSLog(@"CHANGEEDDEDEDE");
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
             [self.scene.view presentScene: newScene transition:reveal];
@@ -365,9 +373,58 @@ NSUserDefaults *defaults;
 
 -(void)update:(CFTimeInterval)currentTime {
     
+
+    
+    
     CGPoint lastObject = [platformsArray.lastObject position];
     CGPoint lastBigBlockPosition = [[bigBlocksArray.lastObject parent] position];
 
+    int xPos = lastObject.x;
+    
+    NSLog(@"iih %d", xPos);
+    
+    if(totalScore > 15 && lastObject.x < self.size.width && speedLevel == 0){
+        speedLevel++;
+        NSLog(@"hi %d", totalScore);
+        numberOfBlocks += 2;
+        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
+        
+    }
+    
+    
+//    if(totalScore > 25 && lastObject.x < self.size.width){
+//        NSLog(@"hi %d", totalScore);
+//        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
+//    }
+    
+    if(totalScore > 50 && lastObject.x < self.size.width && speedLevel == 1){
+        speedLevel++;
+        NSLog(@"hi %d", totalScore);
+        numberOfBlocks += 3;
+        [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
+    }
+    
+    if(totalScore > 100 && lastObject.x < self.size.width && speedLevel == 2){
+        speedLevel++;
+        NSLog(@"hi %d", totalScore);
+        numberOfBlocks += 4;
+        [self setAction:[SKAction moveBy:CGVectorMake(-1000, 0) duration: 3] :true];
+    }
+    
+    
+    if(totalScore > 150 && lastObject.x < self.size.width && speedLevel == 3){
+        speedLevel++;
+        NSLog(@"hi %d", totalScore);
+        numberOfBlocks += 6;
+        [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
+    }
+    
+    if(totalScore > 200 && lastObject.x < self.size.width && speedLevel == 4){
+        speedLevel++;
+        NSLog(@"hi %d", totalScore);
+        [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];
+    }
+    
     if(!addedBigBlocks){
         if(lastBigBlockPosition.x < self.size.width/2){
             addedBigBlocks = true;
@@ -386,7 +443,7 @@ NSUserDefaults *defaults;
     if(!addedSmallBlocks){
         if(lastSmallBlockPosition.x < self.size.width/2){
             addedSmallBlocks = true;
-            [self generateSmallBlocks:self.size :(int)arc4random_uniform(10)];
+            [self generateSmallBlocks:self.size :numberOfBlocks]; //TODO determine if needed in both here and touching blocks!
         }
     }
     
