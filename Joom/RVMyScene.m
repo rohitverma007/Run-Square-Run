@@ -85,7 +85,7 @@ float lastSmallBlockSize = 0;
 float lastBigBlockSize = 0;
 const int rWIDTH = 1;
 const int rSPACE = 2;
-int totalScore = 0;
+int currentScore = 0;
 BOOL appliedImpulse = false;
 BOOL onAir = false;
 int touched = 0;
@@ -97,6 +97,7 @@ NSUserDefaults *defaults;
 int numberOfBlocks;
 int health;
 int speedLevel;
+
 
 -(SKAction*)getAction{
     return forever;
@@ -117,7 +118,7 @@ int speedLevel;
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor blueColor];
         self.physicsWorld.contactDelegate = self;
-        totalScore = 0;
+        currentScore = 0;
         numberOfBlocks = 5;
         health = 3;
         speedLevel = 0;
@@ -177,7 +178,7 @@ int speedLevel;
         //Helper function maybe?
         score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
-        score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+        score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
         score.position = CGPointMake(size.width/2+150, size.height-40);
         [self addChild:score];
         
@@ -264,8 +265,8 @@ int speedLevel;
     if(notBall.categoryBitMask == smallBlockCat){
         [self runAction:[SKAction playSoundFileNamed:@"Pickup_Coin16.wav" waitForCompletion:false]];
         [notBall.node removeFromParent];
-        totalScore++;
-        score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+        currentScore++;
+        score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
         
         //Scaling yes or no?
         //        SKAction *scaleBy = [SKAction scaleBy:1.3 duration:2];
@@ -296,7 +297,7 @@ int speedLevel;
         void (^callBack)(void) = ^(void){
             [notBall.node removeFromParent];
             
-            score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+            score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
             if(health == 0){
             defaults = [NSUserDefaults standardUserDefaults];
             
@@ -306,15 +307,17 @@ int speedLevel;
                 [defaults setInteger:0 forKey:@"highScore"];
                 
             }
+
+                
             
-            if(totalScore > [defaults integerForKey:@"highScore"]){
-                [defaults setInteger:(int)totalScore forKey:@"highScore"];
+            if(currentScore > [defaults integerForKey:@"highScore"]){
+                [defaults setInteger:(int)currentScore forKey:@"highScore"];
             }
             
             
-            [defaults setInteger:(int)totalScore forKey:@"score"];
+            [defaults setInteger:(int)currentScore forKey:@"score"];
             
-
+                
             
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
@@ -343,7 +346,7 @@ int speedLevel;
             
             
             
-            score.text = [NSString stringWithFormat:@"Score: %d", totalScore];
+            score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
             defaults = [NSUserDefaults standardUserDefaults];
 
             
@@ -353,13 +356,23 @@ int speedLevel;
                 
             }
             
-            if(totalScore > [defaults integerForKey:@"highScore"]){
-                [defaults setInteger:(int)totalScore forKey:@"highScore"];
+            if([defaults objectForKey:@"totalScore"] == nil){
+                
+                [defaults setInteger:0 forKey:@"totalScore"];
+                
             }
             
+            int totalScore = [defaults integerForKey:@"totalScore"];
             
-            [defaults setInteger:(int)totalScore forKey:@"score"];
+            if(currentScore > [defaults integerForKey:@"highScore"]){
+                [defaults setInteger:(int)currentScore forKey:@"highScore"];
+            }
             
+
+            totalScore += currentScore;
+            [defaults setInteger:(int)currentScore forKey:@"score"];
+            [defaults setInteger:(int)totalScore forKey:@"totalScore"];
+
             
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
@@ -395,58 +408,58 @@ int speedLevel;
     
     NSLog(@"iih %d %d", speedLevel, xPos);
     
-    if(totalScore > 15 && speedLevel == 0){
+    if(currentScore > 15 && speedLevel == 0){
         speedLevel = 1;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", totalScore);
+        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 3;
         [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 2.5] :true];
         
     }
     
     
-//    if(totalScore > 25 && lastObject.x < self.size.width){
-//        NSLog(@"hi %d", totalScore);
+//    if(currentScore > 25 && lastObject.x < self.size.width){
+//        NSLog(@"hi %d", currentScore);
 //        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
 //    }
     
-    if(totalScore > 50 && speedLevel == 1){
+    if(currentScore > 50 && speedLevel == 1){
         speedLevel = 2;
         health += 2;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", totalScore);
+        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
     }
     
-    if(totalScore > 100 && speedLevel == 2){
+    if(currentScore > 100 && speedLevel == 2){
         speedLevel = 3;
         health += 3;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", totalScore);
+        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-1000, 0) duration: 3] :true];
     }
     
     
-    if(totalScore > 150 && speedLevel == 3){
+    if(currentScore > 150 && speedLevel == 3){
         speedLevel = 4;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", totalScore);
+        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
     }
     
-    if(totalScore > 200 && speedLevel == 4){
+    if(currentScore > 200 && speedLevel == 4){
         speedLevel = 5;
         health++;
-        NSLog(@"hi %d", totalScore);
+        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 1;
 
         [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];

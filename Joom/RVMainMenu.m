@@ -14,8 +14,8 @@
     if (self = [super initWithSize:size]) {
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        long highScore = [defaults integerForKey:@"highScore"];
-        
+        int highScore = [defaults integerForKey:@"highScore"];
+        int totalScore = [defaults integerForKey:@"totalScore"];
         self.backgroundColor = [SKColor blackColor];
         
         
@@ -29,7 +29,7 @@
         
         SKLabelNode *score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
-        score.text = [NSString stringWithFormat:@"HighScore: %ld", highScore];
+        score.text = [NSString stringWithFormat:@"HighScore: %i | TotalScore: %i", highScore, totalScore];
         score.position = CGPointMake(size.width/2, size.height/2);
         SKLabelNode *tapToPlay = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         tapToPlay.fontSize = 24;
