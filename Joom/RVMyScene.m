@@ -181,7 +181,7 @@ int speedLevel = 0;
         healthNumber = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         healthNumber.fontSize = 20;
         healthNumber.text = [NSString stringWithFormat:@"Score: %d", health];
-        healthNumber.position = CGPointMake(20, size.height-40);
+        healthNumber.position = CGPointMake(150, size.height-40);
         [self addChild:healthNumber];
         
         [self addChild:ball];
