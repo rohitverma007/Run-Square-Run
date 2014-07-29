@@ -75,6 +75,7 @@ RVPlatform *platform2;
 RVBlocks *smallBlockObj;
 RVBlocks *bigBlockObj;
 SKLabelNode *score;
+SKLabelNode *healthNumber;
 SKAction *forever;
 BOOL addedPlatform = NO;
 float totalWidth = 0;
@@ -177,6 +178,12 @@ int speedLevel = 0;
         score.position = CGPointMake(size.width/2, size.height-40);
         [self addChild:score];
         
+        healthNumber = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
+        healthNumber.fontSize = 20;
+        healthNumber.text = [NSString stringWithFormat:@"Score: %d", health];
+        healthNumber.position = CGPointMake(20, size.height-40);
+        [self addChild:healthNumber];
+        
         [self addChild:ball];
         
     }
@@ -272,6 +279,8 @@ int speedLevel = 0;
     // maybe in diferent mode , die by touching one?
     if(notBall.categoryBitMask == bigBlockCat){
         health--;
+        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
+
         //Scaling yes or no?
         //        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
         //        [ball runAction:scaleBy];
@@ -381,13 +390,16 @@ int speedLevel = 0;
 
     int xPos = lastObject.x;
     
-    NSLog(@"iih %d", xPos);
+    NSLog(@"iih %d %d", speedLevel, xPos);
     
     if(totalScore > 15 && lastObject.x < self.size.width && speedLevel == 0){
-        speedLevel++;
+        speedLevel = 1;
+        health++;
+        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
+
         NSLog(@"hi %d", totalScore);
         numberOfBlocks += 2;
-        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
+        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 2.5] :true];
         
     }
     
@@ -398,29 +410,39 @@ int speedLevel = 0;
 //    }
     
     if(totalScore > 50 && lastObject.x < self.size.width && speedLevel == 1){
-        speedLevel++;
+        speedLevel = 2;
+        health += 2;
+        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
+
         NSLog(@"hi %d", totalScore);
-        numberOfBlocks += 3;
+        numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
     }
     
     if(totalScore > 100 && lastObject.x < self.size.width && speedLevel == 2){
-        speedLevel++;
+        speedLevel = 3;
+        health += 3;
+        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
+
         NSLog(@"hi %d", totalScore);
-        numberOfBlocks += 4;
+        numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-1000, 0) duration: 3] :true];
     }
     
     
     if(totalScore > 150 && lastObject.x < self.size.width && speedLevel == 3){
-        speedLevel++;
+        speedLevel = 4;
+        health++;
+        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
+
         NSLog(@"hi %d", totalScore);
-        numberOfBlocks += 6;
+        numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
     }
     
     if(totalScore > 200 && lastObject.x < self.size.width && speedLevel == 4){
-        speedLevel++;
+        speedLevel = 5;
+        health++;
         NSLog(@"hi %d", totalScore);
         [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];
     }
