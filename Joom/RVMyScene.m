@@ -302,21 +302,28 @@ int speedLevel;
             defaults = [NSUserDefaults standardUserDefaults];
             
             
-            if([defaults objectForKey:@"highScore"] == nil){
+                if([defaults objectForKey:@"highScore"] == nil){
+                    
+                    [defaults setInteger:0 forKey:@"highScore"];
+                    
+                }
+                if([defaults objectForKey:@"totalScore"] == nil){
+                    
+                    [defaults setInteger:0 forKey:@"totalScore"];
+                    
+                }
                 
-                [defaults setInteger:0 forKey:@"highScore"];
+                int totalScore = [defaults integerForKey:@"totalScore"];
                 
-            }
-
                 
-            
-            if(currentScore > [defaults integerForKey:@"highScore"]){
-                [defaults setInteger:(int)currentScore forKey:@"highScore"];
-            }
-            
-            
-            [defaults setInteger:(int)currentScore forKey:@"score"];
-            
+                if(currentScore > [defaults integerForKey:@"highScore"]){
+                    [defaults setInteger:(int)currentScore forKey:@"highScore"];
+                }
+                
+                
+                totalScore += currentScore;
+                [defaults setInteger:(int)currentScore forKey:@"score"];
+                [defaults setInteger:(int)totalScore forKey:@"totalScore"];
                 
             
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
