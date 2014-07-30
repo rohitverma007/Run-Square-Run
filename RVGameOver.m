@@ -18,23 +18,22 @@
         int highScore = [defaults integerForKey:@"highScore"];
         int totalScore = [defaults integerForKey:@"totalScore"];
         int level = [defaults integerForKey:@"level"];
-
-        if(totalScore % (100) == 0){
-            level++;
+        level = ((totalScore - (totalScore%100)) / 100);
+        
             [defaults setInteger:level forKey:@"level"];
-        }
+        
 
         
         self.backgroundColor = [SKColor blackColor];
         SKLabelNode *score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
         score.text = [NSString stringWithFormat:@"Score: %i | HighScore: %i | TotalScore: %i", currentScore, highScore, totalScore];
-        score.position = CGPointMake(size.width/2, size.height-10);
+        score.position = CGPointMake(size.width/2, size.height-100);
         
         SKLabelNode *levelLabel = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         levelLabel.fontSize = 20;
         levelLabel.text = [NSString stringWithFormat:@"Level: %i | Pts to Next Level: %i", level, (100-(totalScore % 100))];
-        levelLabel.position = CGPointMake(size.width/2, size.height-40);
+        levelLabel.position = CGPointMake(size.width/2, size.height-140);
         
         
         SKLabelNode *tapToPlay = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];

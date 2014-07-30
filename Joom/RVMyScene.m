@@ -48,6 +48,8 @@
 //TODO Preload sounds, number of blocks increase as we go up! NICE SPEEEDIN up.. maybe tweak it a bit?
 //TODO fix repeated block generatingg??@?@? - FIXED
 //TODO fix red generating on green
+
+//TODO health +1 animation? speed up animation?
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -118,9 +120,10 @@ int speedLevel;
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor blueColor];
         self.physicsWorld.contactDelegate = self;
+        int level = [defaults integerForKey:@"level"];
         currentScore = 0;
         numberOfBlocks = 5;
-        health = 3;
+        health = 3+level;
         speedLevel = 0;
         
         SKSpriteNode *edges = [[SKSpriteNode alloc] init];
