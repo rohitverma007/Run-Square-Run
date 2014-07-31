@@ -120,7 +120,9 @@ int speedLevel;
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor blueColor];
         self.physicsWorld.contactDelegate = self;
+        defaults = [NSUserDefaults standardUserDefaults];
         int level = [defaults integerForKey:@"level"];
+        NSLog(@"%i", level);
         currentScore = 0;
         numberOfBlocks = 5;
         health = 3+level;
@@ -302,7 +304,6 @@ int speedLevel;
             
             score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
             if(health == 0){
-            defaults = [NSUserDefaults standardUserDefaults];
             
             
                 if([defaults objectForKey:@"highScore"] == nil){
@@ -357,7 +358,6 @@ int speedLevel;
             
             
             score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
-            defaults = [NSUserDefaults standardUserDefaults];
 
             
             if([defaults objectForKey:@"highScore"] == nil){
@@ -416,14 +416,14 @@ int speedLevel;
 
     int xPos = lastObject.x;
     
-    NSLog(@"iih %d %d", speedLevel, xPos);
+//    NSLog(@"iih %d %d", speedLevel, xPos);
     
     if(currentScore > 15 && speedLevel == 0){
         speedLevel = 1;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", currentScore);
+//        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 3;
         [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 2.5] :true];
         
@@ -440,7 +440,7 @@ int speedLevel;
         health += 2;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", currentScore);
+//        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
     }
@@ -450,7 +450,7 @@ int speedLevel;
         health += 3;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", currentScore);
+//        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-1000, 0) duration: 3] :true];
     }
@@ -461,7 +461,7 @@ int speedLevel;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
 
-        NSLog(@"hi %d", currentScore);
+//        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
     }
@@ -469,7 +469,7 @@ int speedLevel;
     if(currentScore > 200 && speedLevel == 4){
         speedLevel = 5;
         health++;
-        NSLog(@"hi %d", currentScore);
+//        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 1;
 
         [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];

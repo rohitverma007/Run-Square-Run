@@ -24,8 +24,11 @@
         }
         
         int level = [defaults integerForKey:@"level"];
+        level = ((totalScore - (totalScore%100)) / 100);
         
-        
+        [defaults setInteger:level forKey:@"level"];
+        NSLog(@"%i", level);
+
         
         SKLabelNode *title = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         title.fontSize = 24;
