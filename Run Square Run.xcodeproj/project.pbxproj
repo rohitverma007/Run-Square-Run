@@ -27,6 +27,8 @@
 		F9254D94197F253400661229 /* RVPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D93197F253400661229 /* RVPlatform.m */; };
 		F9254D9F197F6DC200661229 /* RVHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F9254D9E197F6DC200661229 /* RVHelper.m */; };
 		F93137941980B3DD00DE2FD9 /* RVBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = F93137931980B3DD00DE2FD9 /* RVBlocks.m */; };
+		F9AD641A1989F97F008F7B07 /* RVUpgradeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AD64191989F97F008F7B07 /* RVUpgradeMenu.m */; };
+		F9AD641D198A0010008F7B07 /* RVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AD641C198A0010008F7B07 /* RVButton.m */; };
 		F9F06F46198596B100EBB5CD /* RVGameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F06F45198596B100EBB5CD /* RVGameOver.m */; };
 		F9F06F4C1985AB8A00EBB5CD /* RVMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F06F4B1985AB8A00EBB5CD /* RVMainMenu.m */; };
 		F9F06F4F1985B29C00EBB5CD /* Pickup_Coin16.wav in Resources */ = {isa = PBXBuildFile; fileRef = F9F06F4D1985B29C00EBB5CD /* Pickup_Coin16.wav */; };
@@ -73,6 +75,10 @@
 		F9254D9E197F6DC200661229 /* RVHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVHelper.m; sourceTree = "<group>"; };
 		F93137921980B3DD00DE2FD9 /* RVBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RVBlocks.h; path = ../RVBlocks.h; sourceTree = "<group>"; };
 		F93137931980B3DD00DE2FD9 /* RVBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVBlocks.m; path = ../RVBlocks.m; sourceTree = "<group>"; };
+		F9AD64181989F97F008F7B07 /* RVUpgradeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVUpgradeMenu.h; sourceTree = "<group>"; };
+		F9AD64191989F97F008F7B07 /* RVUpgradeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVUpgradeMenu.m; sourceTree = "<group>"; };
+		F9AD641B198A0010008F7B07 /* RVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVButton.h; sourceTree = "<group>"; };
+		F9AD641C198A0010008F7B07 /* RVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RVButton.m; sourceTree = "<group>"; };
 		F9F06F44198596B100EBB5CD /* RVGameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RVGameOver.h; path = ../RVGameOver.h; sourceTree = "<group>"; };
 		F9F06F45198596B100EBB5CD /* RVGameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVGameOver.m; path = ../RVGameOver.m; sourceTree = "<group>"; };
 		F9F06F4A1985AB8A00EBB5CD /* RVMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVMainMenu.h; sourceTree = "<group>"; };
@@ -163,6 +169,10 @@
 				F9254D9E197F6DC200661229 /* RVHelper.m */,
 				F9F06F4A1985AB8A00EBB5CD /* RVMainMenu.h */,
 				F9F06F4B1985AB8A00EBB5CD /* RVMainMenu.m */,
+				F9AD64181989F97F008F7B07 /* RVUpgradeMenu.h */,
+				F9AD64191989F97F008F7B07 /* RVUpgradeMenu.m */,
+				F9AD641B198A0010008F7B07 /* RVButton.h */,
+				F9AD641C198A0010008F7B07 /* RVButton.m */,
 			);
 			path = Joom;
 			sourceTree = "<group>";
@@ -309,10 +319,12 @@
 				F91760CA197A2AAD0031CF06 /* RVMyScene.m in Sources */,
 				F9254D9F197F6DC200661229 /* RVHelper.m in Sources */,
 				F91760BD197A2AAD0031CF06 /* main.m in Sources */,
+				F9AD641A1989F97F008F7B07 /* RVUpgradeMenu.m in Sources */,
 				F9F06F46198596B100EBB5CD /* RVGameOver.m in Sources */,
 				F9254D94197F253400661229 /* RVPlatform.m in Sources */,
 				F9F06F4C1985AB8A00EBB5CD /* RVMainMenu.m in Sources */,
 				F93137941980B3DD00DE2FD9 /* RVBlocks.m in Sources */,
+				F9AD641D198A0010008F7B07 /* RVButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

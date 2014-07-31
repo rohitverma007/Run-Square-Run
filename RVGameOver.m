@@ -8,6 +8,11 @@
 
 #import "RVGameOver.h"
 #import "RVMyScene.h"
+#import "RVButton.h"
+#import "RVMainMenu.h"
+
+//todo implement tap to retry, main menu button redirect, ugprade button redirect
+
 
 @implementation RVGameOver
 -(id)initWithSize:(CGSize)size {
@@ -41,6 +46,12 @@
         tapToPlay.text = [NSString stringWithFormat:@"Tap to Retry!"];
         tapToPlay.position = CGPointMake(size.width/2, 40);
         
+        RVButton *menuButton = [[RVButton alloc] init:size :CGPointMake(size.width/5, size.height-40) :CGSizeMake(size.width/6, 50) :@"menuButton" :@"Main Menu"];
+
+        RVButton *upgradeButton = [[RVButton alloc] init:size :CGPointMake(size.width-size.width/5, size.height-40) :CGSizeMake(size.width/6, 50) :@"upgradeButton" :@"Upgrade"];
+        
+        [self addChild:menuButton];
+        [self addChild:upgradeButton];
         [self addChild:tapToPlay];
         [self addChild:levelLabel];
         [self addChild:score];
@@ -52,10 +63,22 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
  
     
-    SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
-    RVMyScene *newScene = [[RVMyScene alloc] initWithSize:self.size];
-    [self.scene.view presentScene: newScene transition:reveal];
+
     
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+    
+    if([node.name isEqualToString:@"menuButton"]){
+        RVMainMenu *mainMenu = [[RVMainMenu alloc] initWithSize:self.size];
+        [self.scene.view presentScene: mainMenu];
+    } else {
+        SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
+        RVMyScene *newScene = [[RVMyScene alloc] initWithSize:self.size];
+        [self.scene.view presentScene: newScene transition:reveal];
+    }
+    
+
     
     
 }
