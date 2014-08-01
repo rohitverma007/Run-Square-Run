@@ -73,9 +73,9 @@
         levelLabel.position = CGPointMake(size.width/2, size.height/2-30);
         
         
-        RVButton *playButton = [[RVButton alloc] init:size :CGPointMake(size.width/5, 40) :CGSizeMake(size.width/3, 50) :@"playButton" :@"Play"];
+        RVButton *playButton = [[RVButton alloc] init:size :CGPointMake(size.width/5, 40) :CGSizeMake(size.width/3, 40) :@"playButton" :@"Play"];
 
-        RVButton *upgradeButton = [[RVButton alloc] init:size :CGPointMake(size.width-playButton.position.x, 40) :CGSizeMake(size.width/3, 50) :@"upgradeButton" :@"Upgrade"];
+        RVButton *upgradeButton = [[RVButton alloc] init:size :CGPointMake(size.width-playButton.position.x, 40) :CGSizeMake(size.width/3, 40) :@"upgradeButton" :@"Upgrade"];
         
         [self addChild:upgradeButton];
         [self addChild:playButton];
