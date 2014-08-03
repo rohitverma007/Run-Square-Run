@@ -37,7 +37,14 @@ static const uint32_t platformCat = 2;
 
 
 -(id)setNewPositionAndRunAction:(int)positionAdd :(SKAction*)action{
-    [self setPosition:CGPointMake(positionAdd+self.size.width/2, [RVHelper generateRandNumber:3 :self.size])];
+    int height = [RVHelper generateRandNumber:3 :self.size];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if([defaults boolForKey:@"levelledPlatform"]){
+        height = 0;
+    }
+    
+    [self setPosition:CGPointMake(positionAdd+self.size.width/2, height)];
     [self runAction:action];
     return self;
 }
