@@ -30,8 +30,8 @@
                                            @"colorChange": [NSNumber numberWithInt:0]
                                            };
         
-        int highScore = [defaults integerForKey:@"highScore"];
-        int totalScore = [defaults integerForKey:@"totalScore"];
+        int highScore = (int)[defaults integerForKey:@"highScore"];
+        int totalScore = (int)[defaults integerForKey:@"totalScore"];
         
         // Assign level property
         if([defaults objectForKey:@"level"] == nil){
@@ -40,7 +40,7 @@
             
         }
         
-        int level = [defaults integerForKey:@"level"];
+        int level = (int)[defaults integerForKey:@"level"];
         level = ((totalScore - (totalScore%100)) / 100);
         
         [defaults setInteger:level forKey:@"level"];

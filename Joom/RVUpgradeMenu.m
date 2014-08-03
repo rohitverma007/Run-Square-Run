@@ -15,6 +15,8 @@ NSDictionary *playerProperties;
 
 //TODO allow upgrading playerProperties through levelup points
 //TODO this scene rendering tooo slow after toch or something?
+//TODO object id is being set for nsdictionary?
+
 -(instancetype)initWithSize:(CGSize)size{
     if (self = [super initWithSize:size]) {
     
@@ -33,12 +35,32 @@ NSDictionary *playerProperties;
         NSLog(@"after %@", [playerProperties objectForKey:@"levelUpPoints"]);
 
         if([playerProperties objectForKey:@"levelUpPoints"] > 0){
-            levelUpPoints = (int)[playerProperties objectForKey:@"levelUpPoints"];
+//            levelUpPoints = [playerProperties objectForKey:@"levelUpPoints"];
+            levelUpPoints = [playerProperties objectForKey:@"levelUpPoints"];
             SKLabelNode *healthPlus = [SKLabelNode labelNodeWithFontNamed:@""];
             healthPlus.position = CGPointMake(size.width/6, size.height-70);
             healthPlus.fontSize = 20;
             healthPlus.text = [NSString stringWithFormat:@"+"];
             healthPlus.name = @"healthPlus";
+            
+            SKLabelNode *coinValuePlus = [SKLabelNode labelNodeWithFontNamed:@""];
+            coinValuePlus.position = CGPointMake(size.width/6, size.height-90);
+            coinValuePlus.fontSize = 20;
+            coinValuePlus.text = [NSString stringWithFormat:@"+"];
+            coinValuePlus.name = @"coinValuePlus";
+
+            SKLabelNode *coinFreqPlus = [SKLabelNode labelNodeWithFontNamed:@""];
+            coinFreqPlus.position = CGPointMake(size.width/6, size.height-110);
+            coinFreqPlus.fontSize = 20;
+            coinFreqPlus.text = [NSString stringWithFormat:@"+"];
+            coinFreqPlus.name = @"coinFreqPlus";
+            
+            SKLabelNode *noRedLevel = [SKLabelNode labelNodeWithFontNamed:@""];
+            noRedLevel.position = CGPointMake(size.width/6, size.height-110);
+            noRedLevel.fontSize = 20;
+            noRedLevel.text = [NSString stringWithFormat:@"+"];
+            noRedLevel.name = @"noRedLevel";
+            
             
             [self addChild:healthPlus];
         }
@@ -69,6 +91,7 @@ NSDictionary *playerProperties;
         NSLog(@"touched");
     }
     
+    NSLog(@"after %@", [playerProperties objectForKey:@"levelUpPoints"]);
 
     
 }

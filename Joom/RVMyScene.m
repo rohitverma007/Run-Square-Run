@@ -99,6 +99,7 @@ NSUserDefaults *defaults;
 int numberOfBlocks;
 int health;
 int speedLevel;
+bool noRedLevel;
 
 
 -(SKAction*)getAction{
@@ -121,12 +122,17 @@ int speedLevel;
         self.backgroundColor = [SKColor blueColor];
         self.physicsWorld.contactDelegate = self;
         defaults = [NSUserDefaults standardUserDefaults];
-        int level = [defaults integerForKey:@"level"];
+        int level = (int)[defaults integerForKey:@"level"];
         NSLog(@"%i", level);
         currentScore = 0;
         numberOfBlocks = 5;
         health = 3+level;
         speedLevel = 0;
+        
+        if([defaults boolForKey:@"noRedLevel"]){
+            noRedLevel = true;
+        }
+        
         
         SKSpriteNode *edges = [[SKSpriteNode alloc] init];
         edges.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(1, 0) toPoint:CGPointMake(size.width, 0)];
@@ -174,11 +180,15 @@ int speedLevel;
         
         //TODO Maybe move these two functions to a class for reuse in other scenes? -Done?
         
+        
         smallBlocksArray = [NSMutableArray array];
-        bigBlocksArray = [NSMutableArray array];
+        
+        if (!noRedLevel) {
+            bigBlocksArray = [NSMutableArray array];
+            [self generateBigBlocks:size];
+        }
         
         [self generateSmallBlocks:size :arc4random_uniform(numberOfBlocks)];
-        [self generateBigBlocks:size];
     
         //Helper function maybe?
         score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
