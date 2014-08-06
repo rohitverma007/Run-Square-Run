@@ -49,11 +49,7 @@ NSDictionary *playerProperties;
             coinValuePlus.text = [NSString stringWithFormat:@"+"];
             coinValuePlus.name = @"coinValuePlus";
 
-            SKLabelNode *coinFreqPlus = [SKLabelNode labelNodeWithFontNamed:@""];
-            coinFreqPlus.position = CGPointMake(size.width/6, size.height-110);
-            coinFreqPlus.fontSize = 20;
-            coinFreqPlus.text = [NSString stringWithFormat:@"+"];
-            coinFreqPlus.name = @"coinFreqPlus";
+
             
             SKLabelNode *noRedLevel = [SKLabelNode labelNodeWithFontNamed:@""];
             noRedLevel.position = CGPointMake(size.width/6, size.height-110);
@@ -63,6 +59,8 @@ NSDictionary *playerProperties;
             
             
             [self addChild:healthPlus];
+            [self addChild:coinValuePlus];
+            [self addChild:noRedLevel];
         }
         
 

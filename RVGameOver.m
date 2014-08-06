@@ -40,11 +40,7 @@
         levelLabel.text = [NSString stringWithFormat:@"Level: %i | Pts to Next Level: %i", level, (100-(totalScore % 100))];
         levelLabel.position = CGPointMake(size.width/2, size.height-140);
         
-        
-        SKLabelNode *tapToPlay = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
-        tapToPlay.fontSize = 24;
-        tapToPlay.text = [NSString stringWithFormat:@"Tap to Retry!"];
-        tapToPlay.position = CGPointMake(size.width/2, 40);
+        RVButton *retryButton = [[RVButton alloc] init:size :CGPointMake(size.width/2, 60) :CGSizeMake(size.width/6, 50) : @"retryButton" :@"Retry"];
         
         RVButton *menuButton = [[RVButton alloc] init:size :CGPointMake(size.width/5, size.height-40) :CGSizeMake(size.width/6, 50) :@"menuButton" :@"Main Menu"];
 
@@ -52,7 +48,7 @@
         
         [self addChild:menuButton];
         [self addChild:upgradeButton];
-        [self addChild:tapToPlay];
+        [self addChild:retryButton];
         [self addChild:levelLabel];
         [self addChild:score];
         
@@ -72,7 +68,8 @@
     if([node.name isEqualToString:@"menuButton"]){
         RVMainMenu *mainMenu = [[RVMainMenu alloc] initWithSize:self.size];
         [self.scene.view presentScene: mainMenu];
-    } else {
+    }
+    if([node.name isEqualToString:@"retryButton"]){
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
         RVMyScene *newScene = [[RVMyScene alloc] initWithSize:self.size];
         [self.scene.view presentScene: newScene transition:reveal];
