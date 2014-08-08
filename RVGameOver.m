@@ -8,7 +8,6 @@
 
 #import "RVGameOver.h"
 #import "RVMyScene.h"
-#import "RVButton.h"
 #import "RVMainMenu.h"
 
 //todo implement tap to retry, main menu button redirect, ugprade button redirect
@@ -32,24 +31,22 @@
         self.backgroundColor = [SKColor blackColor];
         SKLabelNode *score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
-        score.text = [NSString stringWithFormat:@"Score: %i | HighScore: %i | TotalScore: %i", currentScore, highScore, totalScore];
+        score.text = [NSString stringWithFormat:@"Score: %i | HighScore: %i", currentScore, highScore];
         score.position = CGPointMake(size.width/2, size.height-100);
+       
+        SKLabelNode *nextLevel = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
+        nextLevel.fontSize = 20;
+        nextLevel.text = [NSString stringWithFormat:@"Total Score: %i | Points to Next Health Upgrade %i", totalScore, (200-(totalScore % 200))];
+        nextLevel.position = CGPointMake(size.width/2, size.height-140);
         
-        SKLabelNode *levelLabel = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
-        levelLabel.fontSize = 20;
-        levelLabel.text = [NSString stringWithFormat:@"Level: %i | Pts to Next Level: %i", level, (100-(totalScore % 100))];
-        levelLabel.position = CGPointMake(size.width/2, size.height-140);
         
-        RVButton *retryButton = [[RVButton alloc] init:size :CGPointMake(size.width/2, 60) :CGSizeMake(size.width/6, 50) : @"retryButton" :@"Retry"];
+        SKLabelNode *tapToPlay = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
+        tapToPlay.fontSize = 24;
+        tapToPlay.text = [NSString stringWithFormat:@"Tap to Retry!"];
+        tapToPlay.position = CGPointMake(size.width/2, 40);
         
-        RVButton *menuButton = [[RVButton alloc] init:size :CGPointMake(size.width/5, size.height-40) :CGSizeMake(size.width/6, 50) :@"menuButton" :@"Main Menu"];
-
-        RVButton *upgradeButton = [[RVButton alloc] init:size :CGPointMake(size.width-size.width/5, size.height-40) :CGSizeMake(size.width/6, 50) :@"upgradeButton" :@"Upgrade"];
-        
-        [self addChild:menuButton];
-        [self addChild:upgradeButton];
-        [self addChild:retryButton];
-        [self addChild:levelLabel];
+        [self addChild:tapToPlay];
+        [self addChild:nextLevel]; 
         [self addChild:score];
         
     }
@@ -60,20 +57,11 @@
  
     
 
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
-    SKNode *node = [self nodeAtPoint:location];
-    
-    if([node.name isEqualToString:@"menuButton"]){
-        RVMainMenu *mainMenu = [[RVMainMenu alloc] initWithSize:self.size];
-        [self.scene.view presentScene: mainMenu];
-    }
-    if([node.name isEqualToString:@"retryButton"]){
+
         SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
         RVMyScene *newScene = [[RVMyScene alloc] initWithSize:self.size];
         [self.scene.view presentScene: newScene transition:reveal];
-    }
+
     
 
     

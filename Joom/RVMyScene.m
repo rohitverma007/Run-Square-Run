@@ -123,15 +123,10 @@ bool noRedLevel;
         self.physicsWorld.contactDelegate = self;
         defaults = [NSUserDefaults standardUserDefaults];
         int level = (int)[defaults integerForKey:@"level"];
-        NSLog(@"%i", level);
         currentScore = 0;
         numberOfBlocks = 5;
         health = 3+level;
         speedLevel = 0;
-        
-        if([defaults boolForKey:@"noRedLevel"]){
-            noRedLevel = true;
-        }
         
         //Preload Audio
         SKAction *preloadHit = [SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:false];
@@ -186,10 +181,9 @@ bool noRedLevel;
         
         smallBlocksArray = [NSMutableArray array];
         
-        if (!noRedLevel) {
-            bigBlocksArray = [NSMutableArray array];
-            [self generateBigBlocks:size];
-        }
+        bigBlocksArray = [NSMutableArray array];
+        [self generateBigBlocks:size];
+
         
         [self generateSmallBlocks:size :arc4random_uniform(numberOfBlocks)];
     
