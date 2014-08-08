@@ -115,8 +115,8 @@
 		F91760A2197A2AAD0031CF06 = {
 			isa = PBXGroup;
 			children = (
-				F91760B6197A2AAD0031CF06 /* Joom */,
-				F91760DA197A2AAD0031CF06 /* JoomTests */,
+				F91760B6197A2AAD0031CF06 /* Run Square Run */,
+				F91760DA197A2AAD0031CF06 /* Run Square RunTests */,
 				F91760AD197A2AAD0031CF06 /* Frameworks */,
 				F91760AC197A2AAD0031CF06 /* Products */,
 			);
@@ -143,7 +143,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F91760B6197A2AAD0031CF06 /* Joom */ = {
+		F91760B6197A2AAD0031CF06 /* Run Square Run */ = {
 			isa = PBXGroup;
 			children = (
 				F97E96DB1980059000487537 /* iPad */,
@@ -174,7 +174,7 @@
 				F9AD641B198A0010008F7B07 /* RVButton.h */,
 				F9AD641C198A0010008F7B07 /* RVButton.m */,
 			);
-			path = Joom;
+			path = "Run Square Run";
 			sourceTree = "<group>";
 		};
 		F91760B7197A2AAD0031CF06 /* Supporting Files */ = {
@@ -188,13 +188,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F91760DA197A2AAD0031CF06 /* JoomTests */ = {
+		F91760DA197A2AAD0031CF06 /* Run Square RunTests */ = {
 			isa = PBXGroup;
 			children = (
 				F91760E0197A2AAD0031CF06 /* JoomTests.m */,
 				F91760DB197A2AAD0031CF06 /* Supporting Files */,
 			);
-			path = JoomTests;
+			path = "Run Square RunTests";
 			sourceTree = "<group>";
 		};
 		F91760DB197A2AAD0031CF06 /* Supporting Files */ = {
@@ -450,8 +450,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Joom/Run Square Run-Prefix.pch";
-				INFOPLIST_FILE = "Joom/Joom-Info.plist";
+				GCC_PREFIX_HEADER = "Run Square Run/Run Square Run-Prefix.pch";
+				INFOPLIST_FILE = "Run Square Run/Run Square Run-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Run Square Run";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
@@ -466,8 +466,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Joom/Run Square Run-Prefix.pch";
-				INFOPLIST_FILE = "Joom/Joom-Info.plist";
+				GCC_PREFIX_HEADER = "Run Square Run/Run Square Run-Prefix.pch";
+				INFOPLIST_FILE = "Run Square Run/Run Square Run-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Run Square Run";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
