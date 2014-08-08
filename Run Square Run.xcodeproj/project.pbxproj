@@ -140,7 +140,6 @@
 		F91760B6197A2AAD0031CF06 /* Run Square Run */ = {
 			isa = PBXGroup;
 			children = (
-				F97E96DB1980059000487537 /* iPad */,
 				F91760BF197A2AAD0031CF06 /* RVAppDelegate.h */,
 				F91760C0197A2AAD0031CF06 /* RVAppDelegate.m */,
 				F9254D92197F253400661229 /* RVPlatform.h */,
@@ -197,13 +196,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F97E96DB1980059000487537 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,7 +242,7 @@
 			attributes = {
 				CLASSPREFIX = RV;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = rohitv;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					F91760D2197A2AAD0031CF06 = {
 						TestTargetID = F91760AA197A2AAD0031CF06;
@@ -443,6 +435,7 @@
 				INFOPLIST_FILE = "Run Square Run/Run Square Run-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Run Square Run";
+				PROVISIONING_PROFILE = "16078914-84D0-4AA5-9BED-502FD9707CC7";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -459,6 +452,7 @@
 				INFOPLIST_FILE = "Run Square Run/Run Square Run-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Run Square Run";
+				PROVISIONING_PROFILE = "16078914-84D0-4AA5-9BED-502FD9707CC7";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
