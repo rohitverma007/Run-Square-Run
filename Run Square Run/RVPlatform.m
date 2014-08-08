@@ -1,11 +1,3 @@
-//
-//  RVPlatform.m
-//  Joom
-//
-//  Created by Rohit Verma on 2014-07-22.
-//  Copyright (c) 2014 rohitv. All rights reserved.
-//
-
 #import "RVPlatform.h"
 #import "RVHelper.h"
 static const uint32_t platformCat = 2;

@@ -1,55 +1,3 @@
-//
-//  RVMyScene.m
-//  Joom
-//
-//  Created by Rohit Verma on 2014-07-19.
-//  Copyright (c) 2014 rohitv. All rights reserved.
-//
-
-//TODO
-//Look into optimizing.. fps decreases, cpu increases? memory management?
-//Fix the generator, clean up code, check if good idea to put it in update? .. use similar logic as small/big blocks for loop?
-//Fix ball moving back a bit?
-//Implement random height, random space
-//Implement smallBlocks, bigBlocks
-//Implement power ups
-//Implement score
-//Implement main menu/ game over - retry
-//Check difference between adding public variables here or in .h file...
-//Remove platformCat?
-//Hide status bar
-//look into intenrary if statements/shortcut variable if statements
-
-//Square is running away from the left side of the screen! save him, dont let him get eaaaaten
-
-//1. fix jumping.. x appplyimpulse? but no velocity!
-//TODO Automate first platform
-//TODO Figure out how to set action properly... currently thinking of implementing delegates?
-// Currently resetting action... should only modify it temporarily? maybe use callbacks???
-
-
-//TODO Get proper spacing/position for big blocks and small blocks, maybe always generate small blocks in
-// packages and big blocks randomly and individually
-
-//TODO MEMORY CLEANUP !!!!
-
-
-//TODO look into optional parameters
-
-//TODO Seprate methods for setnewposition depending on small block vs big block
-
-//TODO Render blocks much earlier, right now its too abrupt
-
-
-//TODO Attach big blocks to platforms, make it child node of platforms, new class? No action, attached to platform
-
-//TODO Fix regenerating of red blocks, DONE: quickfix for generating big blocks on platforms
-
-//TODO Preload sounds, number of blocks increase as we go up! NICE SPEEEDIN up.. maybe tweak it a bit?
-//TODO fix repeated block generatingg??@?@? - FIXED
-//TODO fix red generating on green
-
-//TODO health +1 animation? speed up animation?
 #import "RVMyScene.h"
 #import "RVPlatform.h"
 #import "RVHelper.h"
@@ -140,15 +88,11 @@ bool noRedLevel;
         edgesSide.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(0, 1) toPoint:CGPointMake(0, size.height)];
         edgesSide.physicsBody.categoryBitMask = edgeCat;
         
-//        SKSpriteNode *edgesRightSide = [[SKSpriteNode alloc] init];
-//        edgesRightSide.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(size.width-10, 0) toPoint:CGPointMake(size.width-10,size.height)];
-//        edgesSide.physicsBody.categoryBitMask = 32;
-        
         [self addChild:edges];
         [self addChild:edgesSide];
-//        [self addChild:edgesRightSide];
+        //        [self addChild:edgesRightSide];
         platformsArray = [NSMutableArray array];
-
+        
         platform = [[RVPlatform alloc ]init:size];
         [platform setPosition:CGPointMake(platform.size.width/2, platform.size.height/2)];
         
@@ -183,10 +127,10 @@ bool noRedLevel;
         
         bigBlocksArray = [NSMutableArray array];
         [self generateBigBlocks:size];
-
+        
         
         [self generateSmallBlocks:size :arc4random_uniform(numberOfBlocks)];
-    
+        
         //Helper function maybe?
         score = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
         score.fontSize = 20;
@@ -208,22 +152,22 @@ bool noRedLevel;
 
 -(void)generateSmallBlocks:(CGSize)size :(int)count{
     
-
-
+    
+    
     
     [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:self.size.width+10 :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject :(int)newLayerY :true]];
     [self addChild:smallBlocksArray.lastObject];
     
     for(int i = 1; i < count; i++){
         RVBlocks *abcd = smallBlocksArray.lastObject;
-
+        
         if(i > 3){
             setMultipleLayer = true;
         }
         
         if(i == 4){
             CGPoint last = [smallBlocksArray.lastObject position] ;
-                abcd.position = CGPointMake(abcd.position.x, abcd.position.y);
+            abcd.position = CGPointMake(abcd.position.x, abcd.position.y);
             newLayerY = last.y;
         }
         [smallBlocksArray addObject:[[[RVBlocks alloc]init:size :true] setNewPositionAndRunAction:(int)([RVHelper getSmallBlocksDistance:abcd]) :[self getAction] :self.size :setMultipleLayer :smallBlocksArray.lastObject  :(int)newLayerY :true]];
@@ -239,16 +183,6 @@ bool noRedLevel;
 -(void)generateBigBlocks:(CGSize)size{
     [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:500  :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject :(int)newLayerY :false]];
     [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
-//    
-//    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject  :(int)newLayerY]];
-//    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
-//    
-//    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject  :(int)newLayerY]];
-//    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
-//    
-//    
-//    [bigBlocksArray addObject:[[[RVBlocks alloc]init:size :false] setNewPositionAndRunAction:(int)([RVHelper getBigBlocksDistance:bigBlocksArray.lastObject]) :[self getAction] :self.size :setMultipleLayer :platformsArray.lastObject  :(int)newLayerY]];
-//    [platformsArray.lastObject addChild:bigBlocksArray.lastObject];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -280,39 +214,23 @@ bool noRedLevel;
         currentScore++;
         score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
         
-        //Scaling yes or no?
-        //        SKAction *scaleBy = [SKAction scaleBy:1.3 duration:2];
-        //        [ball runAction:scaleBy];
-        //        if(touched > 0){ //Put this if statement in the correct place!
-        //            ball.physicsBody.velocity = CGVectorMake(0, 0);
-        //        }
         if([notBall.node.name isEqualToString:@"lastSmallBlock"]){
             [self generateSmallBlocks:self.frame.size :arc4random_uniform(numberOfBlocks)];
         }
     }
     
-    //For now scale down? oo maybe scale down to original and then if one more touched, then die,
-    // maybe in diferent mode , die by touching one?
+
     if(notBall.categoryBitMask == bigBlockCat){
         health--;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
-
-        //Scaling yes or no?
-        //        SKAction *scaleBy = [SKAction scaleBy:0.8 duration:2];
-        //        [ball runAction:scaleBy];
-        
-        //        if(touched > 0){ //Put this if statement in the correct place!
-        //            ball.physicsBody.velocity = CGVectorMake(0, 0);
-        //        }
-        
         
         void (^callBack)(void) = ^(void){
             [notBall.node removeFromParent];
             
             score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
             if(health == 0){
-            
-            
+                
+                
                 if([defaults objectForKey:@"highScore"] == nil){
                     
                     [defaults setInteger:0 forKey:@"highScore"];
@@ -336,22 +254,22 @@ bool noRedLevel;
                 [defaults setInteger:(int)currentScore forKey:@"score"];
                 [defaults setInteger:(int)totalScore forKey:@"totalScore"];
                 
-            
-            SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
-            RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
-            [self.scene.view presentScene: newScene transition:reveal];
-            
-            if([notBall.node.name isEqualToString:@"lastBigBlock"]){ //TODO what ? is this needed?
-                [self generateBigBlocks:self.frame.size];
+                
+                SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:0.5];
+                RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
+                [self.scene.view presentScene: newScene transition:reveal];
+                
+                if([notBall.node.name isEqualToString:@"lastBigBlock"]){ //TODO what ? is this needed?
+                    [self generateBigBlocks:self.frame.size];
+                }
             }
-            }
-
+            
         };
         
         
         
         [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:true] completion:callBack];
-
+        
     }
     
     
@@ -365,7 +283,7 @@ bool noRedLevel;
             
             
             score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
-
+            
             
             if([defaults objectForKey:@"highScore"] == nil){
                 
@@ -385,11 +303,11 @@ bool noRedLevel;
                 [defaults setInteger:(int)currentScore forKey:@"highScore"];
             }
             
-
+            
             totalScore += currentScore;
             [defaults setInteger:(int)currentScore forKey:@"score"];
             [defaults setInteger:(int)totalScore forKey:@"totalScore"];
-
+            
             
             SKTransition *reveal = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
             RVGameOver *newScene = [[RVGameOver alloc] initWithSize:self.size];
@@ -397,12 +315,12 @@ bool noRedLevel;
         };
         
         [self runAction:[SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:true] completion:newCallback];
-
+        
     }
 }
 
 -(void)generatePlatforms{
-  
+    
     [platformsArray addObject:[[[RVPlatform alloc]init:self.size] setNewPositionAndRunAction:(int)([RVHelper getDistance:platformsArray.lastObject]) :[self getAction]]];
     [self addChild:platformsArray.lastObject];
     
@@ -415,39 +333,37 @@ bool noRedLevel;
 
 -(void)update:(CFTimeInterval)currentTime {
     
-
+    
     
     
     CGPoint lastObject = [platformsArray.lastObject position];
     CGPoint lastBigBlockPosition = [[bigBlocksArray.lastObject parent] position];
-
+    
     int xPos = lastObject.x;
     
-//    NSLog(@"iih %d %d", speedLevel, xPos);
-    
+        //TODO - !! IMPORTANT !! REMOVE THIS LOGIC , NOT REQUIRED ANYMORE! -.-.. old logic, why is this still here.. ugh..
     if(currentScore > 15 && speedLevel == 0){
         speedLevel = 1;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
-
-//        NSLog(@"hi %d", currentScore);
+        
+        //        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 3;
         [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 2.5] :true];
         
     }
     
     
-//    if(currentScore > 25 && lastObject.x < self.size.width){
-//        NSLog(@"hi %d", currentScore);
-//        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
-//    }
+    //    if(currentScore > 25 && lastObject.x < self.size.width){
+    //        NSLog(@"hi %d", currentScore);
+    //        [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 3] :true];
+    //    }
     
     if(currentScore > 50 && speedLevel == 1){
         speedLevel = 2;
         health += 2;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
-
-//        NSLog(@"hi %d", currentScore);
+        
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
     }
@@ -456,8 +372,7 @@ bool noRedLevel;
         speedLevel = 3;
         health += 3;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
-
-//        NSLog(@"hi %d", currentScore);
+        
         numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-1000, 0) duration: 3] :true];
     }
@@ -467,8 +382,7 @@ bool noRedLevel;
         speedLevel = 4;
         health++;
         healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
-
-//        NSLog(@"hi %d", currentScore);
+        
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
     }
@@ -476,9 +390,8 @@ bool noRedLevel;
     if(currentScore > 200 && speedLevel == 4){
         speedLevel = 5;
         health++;
-//        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 1;
-
+        
         [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];
     }
     
