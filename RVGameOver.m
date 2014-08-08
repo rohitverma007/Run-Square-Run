@@ -35,7 +35,7 @@
         score.position = CGPointMake(size.width/2, size.height-100);
        
         SKLabelNode *nextLevel = [SKLabelNode labelNodeWithFontNamed:@"AppleSDGothicNeo-Regular"];
-        nextLevel.fontSize = 20;
+        nextLevel.fontSize = 18;
         nextLevel.text = [NSString stringWithFormat:@"Total Score: %i | Points to Next Health Upgrade: %i", totalScore, (200-(totalScore % 200))];
         nextLevel.position = CGPointMake(size.width/2, size.height-140);
         
