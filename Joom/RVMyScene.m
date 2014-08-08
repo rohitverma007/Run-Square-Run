@@ -133,6 +133,9 @@ bool noRedLevel;
             noRedLevel = true;
         }
         
+        //Preload Audio
+        SKAction *preloadHit = [SKAction playSoundFileNamed:@"Hit_Hurt14.wav" waitForCompletion:false];
+        SKAction *preloadCoin = [SKAction playSoundFileNamed:@"Pickup_Coin16.wav" waitForCompletion:false];
         
         SKSpriteNode *edges = [[SKSpriteNode alloc] init];
         edges.physicsBody = [SKPhysicsBody bodyWithEdgeFromPoint:CGPointMake(1, 0) toPoint:CGPointMake(size.width, 0)];
