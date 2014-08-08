@@ -5,9 +5,9 @@ Run Square Run
 
 - Updating Menus, adding real buttons
 - Adding Upgrade Menu to allow for following upgrades depending on totalScore:
-- coin frequency
-- coin value
-- health
-- power ups: same height platforms, no red level, etc.
+  - coin frequency
+  - coin value
+  - health
+  - power ups: same height platforms, no red level, etc.
   
   
