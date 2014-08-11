@@ -344,8 +344,6 @@ bool noRedLevel;
         //TODO - !! IMPORTANT !! REMOVE THIS LOGIC , NOT REQUIRED ANYMORE! -.-.. old logic, why is this still here.. ugh..
     if(currentScore > 15 && speedLevel == 0){
         speedLevel = 1;
-        health++;
-        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
         
         //        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 3;
@@ -361,8 +359,6 @@ bool noRedLevel;
     
     if(currentScore > 50 && speedLevel == 1){
         speedLevel = 2;
-        health += 2;
-        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
         
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-750, 0) duration: 3] :true];
@@ -370,8 +366,6 @@ bool noRedLevel;
     
     if(currentScore > 100 && speedLevel == 2){
         speedLevel = 3;
-        health += 3;
-        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
         
         numberOfBlocks += 1;
         [self setAction:[SKAction moveBy:CGVectorMake(-1000, 0) duration: 3] :true];
@@ -380,8 +374,6 @@ bool noRedLevel;
     
     if(currentScore > 150 && speedLevel == 3){
         speedLevel = 4;
-        health++;
-        healthNumber.text = [NSString stringWithFormat:@"Health: %d", health];
         
         numberOfBlocks += 2;
         [self setAction:[SKAction moveBy:CGVectorMake(-1250, 0) duration: 3] :true];
@@ -389,7 +381,6 @@ bool noRedLevel;
     
     if(currentScore > 200 && speedLevel == 4){
         speedLevel = 5;
-        health++;
         numberOfBlocks += 1;
         
         [self setAction:[SKAction moveBy:CGVectorMake(-1750, 0) duration: 3] :true];
