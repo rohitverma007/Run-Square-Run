@@ -48,6 +48,7 @@ int numberOfBlocks;
 int health;
 int speedLevel;
 bool noRedLevel;
+bool paused;
 
 
 -(SKAction*)getAction{
@@ -146,6 +147,27 @@ bool noRedLevel;
         
         [self addChild:ball];
         
+        SKSpriteNode *pauseButtonFirstHalf = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:1 green:1 blue:1 alpha:0.7] size:CGSizeMake(10, 20)];
+        pauseButtonFirstHalf.position = CGPointMake(size.width/2, size.height-30);
+        pauseButtonFirstHalf.name = @"pauseButton";
+        
+        SKSpriteNode *pauseButtonSecondHalf = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:1 green:1 blue:1 alpha:0.7] size:CGSizeMake(10, 20)];
+        pauseButtonSecondHalf.position = CGPointMake(pauseButtonFirstHalf.position.x+pauseButtonFirstHalf.size.width/2+10, size.height-30);
+        pauseButtonSecondHalf.name = @"pauseButton1";
+//
+//        SKSpriteNode *pauseButton = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake((pauseButtonSecondHalf.position.x+pauseButtonSecondHalf.size.width/2) - (pauseButtonFirstHalf.position.x-pauseButtonFirstHalf.size.width/2)+10, 25)];
+//        pauseButton.position = CGPointMake(pauseButtonSecondHalf.position.x-pauseButtonSecondHalf.size.width/2, size.height-30);
+//    
+//        pauseButton.name = @"pauseButton";
+        
+//        [self addChild:pauseButton];
+        paused = false;
+        [self addChild:pauseButtonFirstHalf];
+        [self addChild:pauseButtonSecondHalf];
+
+        
+        
+        
     }
     return self;
 }
@@ -187,11 +209,31 @@ bool noRedLevel;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    if(onAir == false){
+
+    if(onAir == false && paused == false){
         touched++;
         appliedImpulse = true;
         [ball.physicsBody applyImpulse:CGVectorMake(0, 12)];
     }
+    
+    if(paused == true){
+        paused = false;
+        self.view.paused = false;
+    }
+    
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+    
+    if([node.name isEqualToString:@"pauseButton"] || [node.name isEqualToString:@"pauseButton1"]){
+        NSLog(@"hi");
+        paused = true;
+        self.view.paused = true;
+    }
+    
+
+    
     
 }
 

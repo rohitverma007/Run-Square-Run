@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>362252E9-0D79-4B0F-A23F-CAB969C657D7</string>
+	<string>E4255B6A-34E5-4974-8865-58185E5A2CC0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Run Square Run</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C48EDB56-79D6-4107-9879-54E192E5759E</key>
-		<string>ssh://github.com/rohitverma007/Joom.git</string>
+		<key>1BA49916-5BF7-4445-8EF8-2BDEFC7E1798</key>
+		<string>ssh://github.com/rohitverma007/Run-Square-Run.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Run Square Run.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C48EDB56-79D6-4107-9879-54E192E5759E</key>
+		<key>1BA49916-5BF7-4445-8EF8-2BDEFC7E1798</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/rohitverma007/Joom.git</string>
+	<string>ssh://github.com/rohitverma007/Run-Square-Run.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C48EDB56-79D6-4107-9879-54E192E5759E</string>
+	<string>1BA49916-5BF7-4445-8EF8-2BDEFC7E1798</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C48EDB56-79D6-4107-9879-54E192E5759E</string>
+			<string>1BA49916-5BF7-4445-8EF8-2BDEFC7E1798</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Joom</string>
+			<string>Run Square Run</string>
 		</dict>
 	</array>
 </dict>
