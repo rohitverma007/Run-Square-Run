@@ -154,13 +154,7 @@ bool paused;
         SKSpriteNode *pauseButtonSecondHalf = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithRed:1 green:1 blue:1 alpha:0.7] size:CGSizeMake(10, 20)];
         pauseButtonSecondHalf.position = CGPointMake(pauseButtonFirstHalf.position.x+pauseButtonFirstHalf.size.width/2+10, size.height-30);
         pauseButtonSecondHalf.name = @"pauseButton1";
-//
-//        SKSpriteNode *pauseButton = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake((pauseButtonSecondHalf.position.x+pauseButtonSecondHalf.size.width/2) - (pauseButtonFirstHalf.position.x-pauseButtonFirstHalf.size.width/2)+10, 25)];
-//        pauseButton.position = CGPointMake(pauseButtonSecondHalf.position.x-pauseButtonSecondHalf.size.width/2, size.height-30);
-//    
-//        pauseButton.name = @"pauseButton";
-        
-//        [self addChild:pauseButton];
+
         paused = false;
         [self addChild:pauseButtonFirstHalf];
         [self addChild:pauseButtonSecondHalf];
@@ -381,13 +375,8 @@ bool paused;
     CGPoint lastObject = [platformsArray.lastObject position];
     CGPoint lastBigBlockPosition = [[bigBlocksArray.lastObject parent] position];
     
-    int xPos = lastObject.x;
-    
-        //TODO - !! IMPORTANT !! REMOVE THIS LOGIC , NOT REQUIRED ANYMORE! -.-.. old logic, why is this still here.. ugh..
     if(currentScore > 15 && speedLevel == 0){
         speedLevel = 1;
-        
-        //        NSLog(@"hi %d", currentScore);
         numberOfBlocks += 3;
         [self setAction:[SKAction moveBy:CGVectorMake(-500, 0) duration: 2.5] :true];
         
