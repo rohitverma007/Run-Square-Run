@@ -221,7 +221,6 @@ bool paused;
     SKNode *node = [self nodeAtPoint:location];
     
     if([node.name isEqualToString:@"pauseButton"] || [node.name isEqualToString:@"pauseButton1"]){
-        NSLog(@"hi");
         paused = true;
         self.view.paused = true;
     }
