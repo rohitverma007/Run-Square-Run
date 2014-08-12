@@ -74,7 +74,7 @@ bool paused;
         int level = (int)[defaults integerForKey:@"level"];
         currentScore = 0;
         numberOfBlocks = 5;
-        health = 3+level;
+        health = level;
         speedLevel = 0;
         
         //Preload Audio
@@ -263,7 +263,7 @@ bool paused;
             [notBall.node removeFromParent];
             
             score.text = [NSString stringWithFormat:@"Score: %d", currentScore];
-            if(health == 0){
+            if(health <= 0){
                 
                 
                 if([defaults objectForKey:@"highScore"] == nil){
