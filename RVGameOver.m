@@ -34,9 +34,12 @@
             }
         }
         
-        if(level != 1){
-        level++; //To make up for off by one error caused by <200%200 = 0
+        if(level == 0 || (level == 1 & totalScore <200)){
+            level = 1;
+        } else {
+            level++; //To make up for off by one error caused by <200%200 = 0
         }
+        
         [defaults setInteger:level forKey:@"level"];
         
 
