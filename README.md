@@ -2,7 +2,7 @@ Run Square Run
 =========
 *Current Version: 1.0*
 
-[![](https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg)](http://google.ca)
+[![](https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg)]()
 
 Simple, fun and addicting game where you collect green blocks, avoid red blocks and avoid getting caught!
 Built using SpriteKit
@@ -11,7 +11,7 @@ Built using SpriteKit
 - Endless Mode with auto generated platforms
 - Health Upgrades depending on total points
 
-[Version 2.0 ](Version 2.0)
+[Version 2.0](https://github.com/rohitverma007/Run-Square-Run/tree/version2.0)
 
 ### Screenshots  
 ![](http://s9.postimg.org/8kywj6ej3/i_OS_Simulator_Screen_shot_Aug_7_2014_10_28_55.png)
@@ -30,3 +30,4 @@ Technical:
 - Criticize the coding style and suggest improvements
 - Submit pull requests
 
+Licensed under GPL V2
