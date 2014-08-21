@@ -2,7 +2,7 @@ Run Square Run
 =========
 *Current Version: 1.0*
 
-[![](https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg)]()
+[![](https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg)](https://itunes.apple.com/us/app/run-square-run/id907323621?ls=1&mt=8)
 
 Simple, fun and addicting game where you collect green blocks, avoid red blocks and avoid getting caught!
 
